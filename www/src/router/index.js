@@ -6,6 +6,9 @@ import Dynamics from '../views/dynamics/Dynamics.vue'
 import Write from '../views/write/Write.vue'
 import Message from '../views/message/Message.vue'
 import Me from '../views/me/Me.vue'
+import Contribution from '../components/me/Contribution.vue'
+import Fans from '../components/me/Fans.vue'
+import Follow from '../components/me/Follow.vue'
 import Login from '../views/Login.vue'
 
 Vue.use(Router)
@@ -34,7 +37,21 @@ export default new Router({
         },
         {
           path: 'me',
-          component: Me
+          component: Me,
+          children: [
+            {
+              path: 'contribution',
+              component: Contribution
+            },
+            {
+              path: 'fans',
+              component: Fans
+            },
+            {
+              path: 'follow',
+              component: Follow
+            }
+          ]
         }
       ]
     },

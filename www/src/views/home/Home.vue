@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <header class="home-header">
       <aside class="logo">LOGO</aside>
       <aside class="search-wrapper">
@@ -8,41 +8,47 @@
     </header>
     <section class="swipe">
       <mt-swipe>
-        <mt-swipe-item>1</mt-swipe-item>
-        <mt-swipe-item>2</mt-swipe-item>
-        <mt-swipe-item>3</mt-swipe-item>
+        <mt-swipe-item>
+          <img src="../../assets/img/food.jpg">
+        </mt-swipe-item>
+        <mt-swipe-item>
+          <img src="../../assets/img/food.jpg">
+        </mt-swipe-item>
+        <mt-swipe-item>
+          <img src="../../assets/img/food.jpg">
+        </mt-swipe-item>
       </mt-swipe>
     </section>
     <section class="nav-wrapper">
       <section class="nav-item">
         <div class="nav-img">
-          <img src="../../assets/food.jpg">
+          <img src="../../assets/img/food.jpg">
         </div>
-        <div class="nav-title">demo</div>
+        <div class="nav-title">标题</div>
       </section>
        <section class="nav-item">
         <div class="nav-img">
-          <img src="../../assets/food.jpg">
+          <img src="../../assets/img/food.jpg">
         </div>
-        <div class="nav-title">demo</div>
+        <div class="nav-title">标题</div>
       </section>
        <section class="nav-item">
         <div class="nav-img">
-          <img src="../../assets/food.jpg">
+          <img src="../../assets/img/food.jpg">
         </div>
-        <div class="nav-title">demo</div>
+        <div class="nav-title">标题</div>
       </section>
        <section class="nav-item">
         <div class="nav-img">
-          <img src="../../assets/food.jpg">
+          <img src="../../assets/img/food.jpg">
         </div>
-        <div class="nav-title">demo</div>
+        <div class="nav-title">标题</div>
       </section>
        <section class="nav-item">
         <div class="nav-img">
-          <img src="../../assets/food.jpg">
+          <img src="../../assets/img/food.jpg">
         </div>
-        <div class="nav-title">demo</div>
+        <div class="nav-title">标题</div>
       </section>
     </section>
     <section class="recommend-list">
@@ -63,11 +69,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  background-color: white;
+}
 .home-header {
   display: flex;
   height:1.8rem;
   padding: 0.8rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   .logo {
     line-height: 1.8rem;
     vertical-align: middle;
@@ -79,11 +88,16 @@ export default {
   }
 }
 .swipe {
-  height: 7rem;
+  height: 10rem;
+  img {
+    height: 100%;
+    width: 100%;
+  }
 }
 .nav-wrapper {
   display: flex;
   justify-content: space-around;
+  padding: 1rem 0; 
   .nav-item {
     .nav-img {
       width: 3rem;
@@ -95,9 +109,13 @@ export default {
         height: 100%;
       }
     }
+    .nav-title {
+      text-align: center;
+      margin-top: 0.2rem;
+    }
   }
 }
 .recommend-list {
-  margin-top: 2rem;
+  background-color: #f5f6fa;
 }
 </style>
