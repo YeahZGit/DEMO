@@ -18,6 +18,7 @@ export default new Router({
     {
       path: '/',
       component: Main,
+      redirect: 'home',
       children: [
         {
           path: 'home',
@@ -38,6 +39,7 @@ export default new Router({
         {
           path: 'me',
           component: Me,
+          redirect: 'me/contribution',
           children: [
             {
               path: 'contribution',

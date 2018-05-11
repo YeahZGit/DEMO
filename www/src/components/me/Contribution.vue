@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ContributionList from  '../../components/home/RecommendList.vue'
+import ContributionList from '../../components/home/RecommendList.vue'
 export default {
   name: 'Contribution',
   components: {

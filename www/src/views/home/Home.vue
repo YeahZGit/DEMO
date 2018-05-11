@@ -97,7 +97,7 @@ export default {
 .nav-wrapper {
   display: flex;
   justify-content: space-around;
-  padding: 1rem 0; 
+  padding: 1rem 0;
   .nav-item {
     .nav-img {
       width: 3rem;
