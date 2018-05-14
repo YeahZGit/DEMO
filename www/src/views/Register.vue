@@ -1,18 +1,17 @@
 <template>
   <div class="login">
     <div class="login-wrapper">
-      <header class="login-title">
-        用户登录
-      </header>
+      <header class="login-title">用户注册</header>
       <section>
         <div class="input-wrapper"><input type="text" placeholder="username"></div>
         <div class="input-wrapper"><input type="text" placeholder="password"></div>
+        <div class="input-wrapper"><input type="text" placeholder="confirm password"></div>
         <div>
-          <div class="btn btn-danger">登录</div>
+          <div class="btn btn-danger">注册</div>
         </div>
       </section>
       <footer class="register-btn">
-        <router-link to="/register">还没注册？点击注册>></router-link>
+        <!-- <router-link to="/register">还没注册？点击注册>></router-link> -->
       </footer>
     </div>
   </div>
@@ -20,7 +19,7 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Register'
 }
 </script>
 
@@ -64,7 +63,7 @@ export default {
     }
     .register-btn {
       text-align: right;
-      font-size: 0.8rem;
+      font-size: 1rem;
       margin-top: 0.8rem;
       a {
         color: #e55039;

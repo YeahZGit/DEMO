@@ -10,6 +10,7 @@ import Contribution from '../components/me/Contribution.vue'
 import Fans from '../components/me/Fans.vue'
 import Follow from '../components/me/Follow.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,10 @@ export default new Router({
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/register',
+      component: Register
     }
   ]
 })

@@ -24,8 +24,7 @@ userController.authorize = (req, res, next) => {
     if (user) {
       const token = jwt.create({ name: body.username });
       res.success({ token: token });
-    }
-    else {
+    } else {
       next(new HttpError.BadRequestError('Username or password error'));
     }
   }).catch(next);

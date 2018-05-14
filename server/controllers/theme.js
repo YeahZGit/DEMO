@@ -25,7 +25,7 @@ themeController.removeThemeById = (req, res, next) => {
 
 themeController.updateThemeById = (req, res, next) => {
   const themeId = req.params.themeId;
-  const body = Object.assign(new Theme(), req.body);
+  // const body = Object.assign(new Theme(), req.body);
   Theme.updateThemeById(themeId, req.body).then(theme => {
     return Theme.findThemeById(theme._id);
   }).then(theme => {

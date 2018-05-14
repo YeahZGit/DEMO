@@ -2,7 +2,11 @@
   <div>
     <header class="me-header">
       <aside class="img-wrapper">
-        <img src="../../assets/img/maomi.jpg">
+        <img v-if="token" src="../../assets/img/maomi.jpg">
+        <router-link
+          v-else 
+          class="login-btn"
+          to="/login">点击登录</router-link>
       </aside>
       <aside class="me-info">
         <div>
@@ -24,6 +28,11 @@ export default {
   name: 'Me',
   components: {
     SwitchBar
+  },
+  data () {
+    return {
+      token: null,
+    }
   }
 }
 </script>
@@ -43,6 +52,15 @@ export default {
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
+    }
+    .login-btn {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      line-height: 4rem;
+      text-align: center;
+      color:  rgba(51, 51, 51, 0.2);
+      background-image: url('../../assets/img/maomi.jpg');
     }
   }
   .me-info {
