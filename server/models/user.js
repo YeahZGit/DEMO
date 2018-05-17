@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
   username: String,
   password: { type: String, select: false },
   picture_url: String,
@@ -12,7 +13,7 @@ const UserSchema = new Schema({
   follow: [{ type: ObjectId, ref: 'User' }]
 })
 
-UserSchema.statics = {
+userSchema.statics = {
   addUser (user) {
     return user.save();
   },
@@ -48,4 +49,4 @@ UserSchema.statics = {
   }
 }
 
-module.exports = dynamicsSchema;
+module.exports = userSchema;

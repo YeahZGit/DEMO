@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <back-header></back-header>
     <div class="login-wrapper">
       <header class="login-title">用户注册</header>
       <section>
@@ -18,8 +19,12 @@
 </template>
 
 <script>
+import BackHeader from '../components/common/BackHeader.vue'
 export default {
-  name: 'Register'
+  name: 'Register',
+  components: {
+    BackHeader
+  }
 }
 </script>
 

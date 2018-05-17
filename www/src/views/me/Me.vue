@@ -4,9 +4,11 @@
       <aside class="img-wrapper">
         <img v-if="token" src="../../assets/img/maomi.jpg">
         <router-link
-          v-else 
+          v-else
           class="login-btn"
-          to="/login">点击登录</router-link>
+          to="/login">
+          点击登录
+        </router-link>
       </aside>
       <aside class="me-info">
         <div>
@@ -31,7 +33,7 @@ export default {
   },
   data () {
     return {
-      token: null,
+      token: null
     }
   }
 }
