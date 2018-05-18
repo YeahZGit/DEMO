@@ -29,23 +29,23 @@ userSchema.statics = {
   updateUserById (userId, newUser) {
     return this.findByIdAndUpdate(userId, newUser);
   },
-  addFans () {
+  // addFans (userId, followId) {
 
+  // },
+  removeFans (userId, fansId) {
+    return this.findByIdAndUpdate(userId, {$pull: { fans: fansId }});
   },
-  removeFans () {
-
+  getAllFansByUserId (userId) {
+    return this.findById(userId).populate('fans').exec();
   },
-  getAllFans () {
-
+  addFollow (userId, followId) {
+    return this.findByIdAndUpdate(userId, {$push: { follow: followId }});
   },
-  addFollow () {
-
+  removeFollow (userId, followId) {
+    return this.findByIdAndUpdate(userId, {$pull: { follow: followId }});
   },
-  removeFollow () {
-
-  },
-  getAllFollows () {
-
+  getAllFollowsByUserId (userId) {
+    return this.findById(userId).populate('follow').exec();
   }
 }
 
