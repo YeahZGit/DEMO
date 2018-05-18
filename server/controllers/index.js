@@ -29,6 +29,23 @@ router.route('/users/:userId')
   .put(userController.updateUserById)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
+router.route('/users/:userId/fans')
+  .get(userController.getAllFansByUserId)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/users/:userId/fans/:fansId')
+  .delete(userController.removeFans)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/users/:userId/follows')
+  .get(userController.getAllFollowsByUserId)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/users/:userId/follows/:followId')
+  .put(userController.addFollow)
+  .delete(userController.removeFollow)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
 router.route('/users/authorization')
   .post(userController.authorize)
   .all(() => { throw new HttpError.MethodNotAllowedError() });

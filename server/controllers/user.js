@@ -23,8 +23,8 @@ userController.updateUserById = (req, res, next) => {
 // }
 
 userController.removeFans = (req, res, next) => {
-  const userId = req.body.userId;
-  const fansId = req.body.fansId;
+  const userId = req.params.userId;
+  const fansId = req.params.fansId;
   User.removeFans(userId, fansId).then(user => {
     return User.getAllFansByUserId(user._id);
   }).then(fans => {
@@ -40,8 +40,8 @@ userController.getAllFansByUserId = (req, res, next) => {
 }
 
 userController.addFollow = (req, res, next) => {
-  const userId = req.body.userId;
-  const followId = req.body.followId;
+  const userId = req.params.userId;
+  const followId = req.params.followId;
   User.addFollow(userId, followId).then(user => {
     return User.getAllFollowsByUserId(user._id);
   }).then(follows => {
@@ -50,8 +50,8 @@ userController.addFollow = (req, res, next) => {
 }
 
 userController.removeFollow = (req, res, next) => {
-  const userId = req.body.userId;
-  const followId = req.body.followId;
+  const userId = req.params.userId;
+  const followId = req.params.followId;
   User.removeFollow(userId, followId).then(user => {
     return User.getAllFollowsByUserId(user._id);
   }).then(follows => {
