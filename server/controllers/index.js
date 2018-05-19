@@ -46,9 +46,9 @@ router.route('/users/:userId/follows/:followId')
   .delete(userController.removeFollow)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-router.route('/users/authorization')
-  .post(userController.authorize)
-  .all(() => { throw new HttpError.MethodNotAllowedError() });
+// router.route('/users/authorization')
+//   .post(userController.authorize)
+//   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/dynamics')
   .post(dynamicsController.addDynamics)

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header class="home-header">
-      <aside class="logo">LOGO</aside>
+      <aside class="logo">FoodKey</aside>
       <aside class="search-wrapper">
         <search></search>
       </aside>

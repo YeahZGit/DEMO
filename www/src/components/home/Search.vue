@@ -25,6 +25,8 @@
       width: 90%;
       margin: 0.3rem auto;
       background-color: rgba(245, 246, 250, 0);
+      font-size: 0.9rem;
+      color: #7f8c8d;
     }
   }
 }
