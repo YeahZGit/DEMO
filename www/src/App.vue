@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style >
+<style>
 @import url('./assets/style/index.css');
 </style>
