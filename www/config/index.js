@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/foodkey': {
+      '/foodkey/api': {
         target: 'http://localhost:7001',
         changeOrigin: true,
         pathRewrite: {
-          '^/foodkey': ''
+          '^/foodkey/api': ''
         }
       }
     },

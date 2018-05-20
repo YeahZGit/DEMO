@@ -4,26 +4,48 @@
     <div class="login-wrapper">
       <header class="login-title">用户注册</header>
       <section>
-        <div class="input-wrapper"><input type="text" placeholder="username"></div>
-        <div class="input-wrapper"><input type="text" placeholder="password"></div>
-        <div class="input-wrapper"><input type="text" placeholder="confirm password"></div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="username" v-model="user.username">
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="password" v-model="user.password">
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="confirm password">
+        </div>
         <div>
-          <div class="btn btn-danger">注册</div>
+          <div class="btn btn-danger" @click="submit">注册</div>
         </div>
       </section>
-      <footer class="register-btn">
-        <!-- <router-link to="/register">还没注册？点击注册>></router-link> -->
-      </footer>
     </div>
   </div>
 </template>
 
 <script>
 import BackHeader from '../components/common/BackHeader.vue'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Register',
   components: {
     BackHeader
+  },
+  data () {
+    return {
+      user: {
+        username: null,
+        password: null
+      },
+      confirmPassword: null
+    }
+  },
+  methods: {
+    ...mapActions('user', {
+      register: 'REGISTER'
+    }),
+    submit () {
+      this.register(this.user);
+    }
   }
 }
 </script>

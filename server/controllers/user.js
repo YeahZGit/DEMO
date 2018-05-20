@@ -66,15 +66,17 @@ userController.getAllFollowsByUserId = (req, res, next) => {
   }).catch(next);
 }
 
-// userController.authorize = (req, res, next) => {
-//   const body = req.body;
-//   User.getAuth(body.username, body.password).then(user => {
-//     if (user) {
-//       const token = jwt.create({ name: body.username });
-//       res.success({ token: token });
-//     } else {
-//       next(new HttpError.BadRequestError('Username or password error'));
-//     }
-//   }).catch(next);
-// };
+userController.authorize = (req, res, next) => {
+  const body = req.body;
+  User.getAuth(body.username, body.password).then(user => {
+    // if (user) {
+    //   const token = jwt.create({ name: body.username });
+    //   res.success({ token: token });
+    // } else {
+    //   next(new HttpError.BadRequestError('Username or password error'));
+    // }
+    res.success(user);
+  }).catch(next);
+};
+
 module.exports = userController;

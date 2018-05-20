@@ -24,7 +24,7 @@ userSchema.statics = {
     return this.findById(userId);
   },
   getAuth(username, password) {
-    return this.find({ username: username, password: password });
+    return this.findOne({ username: username, password: password });
   },
   updateUserById (userId, newUser) {
     return this.findByIdAndUpdate(userId, newUser);

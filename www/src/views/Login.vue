@@ -6,10 +6,14 @@
         用户登录
       </header>
       <section>
-        <div class="input-wrapper"><input type="text" placeholder="username"></div>
-        <div class="input-wrapper"><input type="text" placeholder="password"></div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="username" v-model="user.username">
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="password" v-model="user.password">
+        </div>
         <div>
-          <div class="btn btn-danger">登录</div>
+          <div class="btn btn-danger" @click="submit">登录</div>
         </div>
       </section>
       <footer class="register-btn">
@@ -21,10 +25,28 @@
 
 <script>
 import BackHeader from '../components/common/BackHeader.vue'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Login',
   components: {
     BackHeader
+  },
+  data () {
+    return {
+      user: {
+        username: null,
+        password: null
+      }
+    }
+  },
+  methods: {
+    ...mapActions('user', {
+      authorize: 'AUTHORIZE'
+    }),
+    submit () {
+      this.authorize(this.user);
+    }
   }
 }
 </script>

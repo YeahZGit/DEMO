@@ -25,7 +25,11 @@ router.route('/users')
   .post(userController.addUser)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-router.route('/users/:userId')
+router.route('/users/authorize')
+  .post(userController.authorize)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+  router.route('/users/:userId')
   .put(userController.updateUserById)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
@@ -46,9 +50,6 @@ router.route('/users/:userId/follows/:followId')
   .delete(userController.removeFollow)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-// router.route('/users/authorization')
-//   .post(userController.authorize)
-//   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/dynamics')
   .post(dynamicsController.addDynamics)
