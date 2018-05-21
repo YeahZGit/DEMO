@@ -1,25 +1,32 @@
 <template>
   <div class="dynamics-item">
-    <aside class="user-img">
-      <img src="../../assets/img/maomi.jpg">
-    </aside>
-    <aside class="content">
-      <header>
-        <span class="user-name">猫咪老师</span>
-        <b class="share-btn">...</b>
-      </header>
-      <section>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet ...
-      </section>
-      <footer class="interaction">
-        <section>
-          <img src="../../assets/img/approve.svg"> 100
+    <div class="item">
+      <aside class="user-img"><img src="../../assets/img/maomi.jpg"></aside>
+      <aside class="content">
+        <header>
+          <span class="user-name">{{ item.author.username }}</span>
+          <b class="share-btn">...</b>
+        </header>
+        <section class="content-wrapper">
+          <div class="text">{{ item.content }}</div>
+          <div class="imgs">
+            <section
+              :key="img"
+              v-for="img in item.imgs">
+              <img :src="img">
+            </section>
+          </div>
         </section>
-        <section>
-          <img src="../../assets/img/comment.svg"> 100
-        </section>
-      </footer>
-    </aside>
+        <footer class="interaction">
+          <section>
+            <img src="../../assets/img/approve.svg"> {{ item.approve_count }}
+          </section>
+          <section>
+            <img src="../../assets/img/comment.svg"> {{ item.comment_count }}
+          </section>
+        </footer>
+      </aside>
+    </div>
   </div>
 </template>
 
@@ -27,6 +34,16 @@
 export default {
   name: 'DynamicsItem',
   props: {
+    item: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    type: {
+      type: Number,
+      default: 1
+    }
   }
 }
 </script>
@@ -37,41 +54,62 @@ export default {
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 1rem;
     background-color: white;
-    .user-img {
-      width: 25%;
+    .item {
       display: flex;
-      justify-content: center;
-      padding-top: 2rem;
-      img {
-        width: 3.5rem;
-        height: 3.5rem;
-        border-radius: 50%;
-      }
-    }
-    .content {
-      width: 75%;
-      padding-top: 1rem;
-      header {
+      width: 100%;
+      .user-img {
+        width: 25%;
         display: flex;
-        justify-content: space-between;
-        padding-right: 1rem;
-        .share-btn {
-          text-align: end;
-          font-size: 1.5rem;
-          color: #e6e6e6;
-          position: relative;
-          top: -0.8rem;
-        }
-      }
-      .interaction {
-        display: flex;
-        margin-top: 0.5rem;
-        section:last-child {
-          margin-left: 1.5rem;
-        }
+        justify-content: center;
+        padding-top: 2rem;
         img {
-          height: 1.6rem;
-          width: 1.6rem;
+          width: 3.5rem;
+          height: 3.5rem;
+          border-radius: 50%;
+        }
+      }
+      .content {
+        width: 75%;
+        padding-top: 1rem;
+        header {
+          display: flex;
+          justify-content: space-between;
+          padding-right: 1rem;
+          .share-btn {
+            text-align: end;
+            font-size: 1.5rem;
+            color: #e6e6e6;
+            position: relative;
+            top: -0.8rem;
+          }
+        }
+        .content-wrapper {
+          .text {
+            margin-bottom: 0.5rem;
+          }
+          .imgs {
+            display: flex;
+            flex-wrap: wrap;
+            section {
+              width: 5rem;
+              height: 5rem;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+        .interaction {
+          display: flex;
+          margin-top: 0.5rem;
+          section:last-child {
+            margin-left: 1.5rem;
+          }
+          img {
+            height: 1.6rem;
+            width: 1.6rem;
+          }
         }
       }
     }

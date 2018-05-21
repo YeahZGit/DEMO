@@ -21,7 +21,10 @@ userSchema.statics = {
     return this.findByIdAndRemove(userId);
   },
   findUserById (userId) {
-    return this.findById(userId);
+    return this.findById(userId).populate('fans').populate('follow');
+  },
+  findUserFollow (userId) {
+    return this.findOne({ _id: userId });
   },
   getAuth(username, password) {
     return this.findOne({ username: username, password: password });

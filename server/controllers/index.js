@@ -7,6 +7,7 @@ const adminRequired = require('../middlewares/auth').adminRequired;
 const themeController = require('./theme');
 const dynamicsController = require('./dynamics');
 const userController = require('./user');
+const uploadController = require('./upload');
 
 router.route('/theme')
   .post(themeController.addTheme)
@@ -55,7 +56,7 @@ router.route('/dynamics')
   .post(dynamicsController.addDynamics)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-router.route('/dynamics/dynamicsId')
+router.route('/dynamics/:dynamicsId')
   .put(dynamicsController.updateDynamicsById)
   .delete(dynamicsController.removeDynamicsById)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
@@ -63,5 +64,15 @@ router.route('/dynamics/dynamicsId')
 router.route('/dynamics/self/:userId')
   .get(dynamicsController.getSelfDynamicsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
-  
+
+// 获取关注动态
+router.route('/dynamics/follow/:userId')
+  .get(dynamicsController.getDynamicsByUserId)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/uploads/pictures')
+  .post(multer({ storage: multer.diskStorage(uploadController.storagePicture) }).single('picture'),
+    uploadController.handleResult)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
 module.exports = router;

@@ -1,5 +1,7 @@
 const HttpError = require('some-http-error');
 const Dynamics = require('../models').Dynamics;
+const User = require('../models').User;
+
 const dynamicsController = {};
 
 dynamicsController.addDynamics = (req, res, next) => {
@@ -28,6 +30,16 @@ dynamicsController.removeDynamicsById = (req, res, next) => {
 dynamicsController.getSelfDynamicsByUserId = (req, res, next) => {
   const userId = req.params.userId;
   Dynamics.getSelfDynamicsByUserId(userId).then(dynamics => {
+    res.success(dynamics);
+  }).catch(next);
+}
+
+dynamicsController.getDynamicsByUserId = (req, res, next) => {
+  const userId = req.params.userId;
+  User.findUserFollow(userId).then(user => {
+    const length = user.follow.push(user._id);
+    return Dynamics.getDynamicsByFollowId(user.follow);
+  }).then(dynamics => {
     res.success(dynamics);
   }).catch(next);
 }

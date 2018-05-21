@@ -24,16 +24,16 @@ dynamicsSchema.statics = {
     return this.findByIdAndRemove(dynamicsId);
   },
   findDynamicsById (dynamicsId) {
-    return this.findById(themeId);
+    return this.findById(dynamicsId);
   },
   updateDynamicsById (dynamicsId, newDynamics) {
     return this.findByIdAndUpdate(dynamicsId, newDynamics);
   },
   getSelfDynamicsByUserId (userId) {
-    return this.find({ author: userId });
+    return this.find({ author: userId }).populate('author');
   },
-  getOtherDynamicsByUserId (userId) {
-    // return 
+  getDynamicsByFollowId (followIds) {
+    return this.find({ author: {$in: followIds} }).sort({create_at: -1}).populate('author');
   }
 }
 

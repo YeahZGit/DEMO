@@ -1,5 +1,9 @@
 import userResource from './user'
+import uploadResource from './upload'
+import dynamicsResource from './dynamics'
 
 export default {
-  userResource
+  userResource,
+  uploadResource,
+  dynamicsResource
 }

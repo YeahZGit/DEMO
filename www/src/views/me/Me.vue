@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="me">
     <header class="me-header">
       <aside class="img-wrapper">
         <img v-if="token" src="../../assets/img/maomi.jpg">
@@ -40,6 +40,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.me {
+  margin-bottom: 3rem;
+}
 .me-header {
   height: 5rem;
   display: flex;
