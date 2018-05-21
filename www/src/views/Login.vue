@@ -45,7 +45,7 @@ export default {
       authorize: 'AUTHORIZE'
     }),
     submit () {
-      this.authorize(this.user);
+      this.authorize(this.user)
     }
   }
 }

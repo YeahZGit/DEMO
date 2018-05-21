@@ -7,6 +7,7 @@ const dynamicsSchema = new Schema({
   type: Number,
   title: String,
   title_img: String,
+  imgs: Array,
   content: String,
   author: { type: ObjectId, ref: 'User' },
   create_at: { type: Date, default: Date.now },

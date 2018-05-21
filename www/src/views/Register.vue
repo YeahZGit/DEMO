@@ -44,7 +44,7 @@ export default {
       register: 'REGISTER'
     }),
     submit () {
-      this.register(this.user);
+      this.register(this.user)
     }
   }
 }

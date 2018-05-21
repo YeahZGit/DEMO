@@ -10,25 +10,46 @@
       </div>
     </header>
     <section class="article-tyle">
-      <section class="article-tyle-btn">
+      <section class="article-tyle-btn" @click="startEdit(1)">
         <section class="icon text"><img src="../../assets/img/text.svg"></section>
         <section class="title">文字</section>
       </section>
-      <section class="article-tyle-btn">
+      <section class="article-tyle-btn" @click="startEdit(2)">
         <section class="icon show"><img src="../../assets/img/show.svg"></section>
         <section class="title">大显身手</section>
       </section>
-      <section class="article-tyle-btn">
+      <!-- <section class="article-tyle-btn">
         <section class="icon photo"><img src="../../assets/img/photo.svg"></section>
         <section class="title">美拍</section>
-      </section>
+      </section> -->
     </section>
+    <text-editor :visible="showTextEditor" @hide="hideHandler"></text-editor>
   </div>
 </template>
 
 <script>
+import TextEditor from '../../components/editor/TextEditor.vue'
+
 export default {
-  name: 'Write'
+  name: 'Editor',
+  components: {
+    TextEditor
+  },
+  data () {
+    return {
+      showTextEditor: true
+    }
+  },
+  methods: {
+    startEdit (type) {
+      if (type === 1) {
+        this.showTextEditor = true
+      }
+    },
+    hideHandler () {
+      this.showTextEditor = false
+    }
+  }
 }
 </script>
 

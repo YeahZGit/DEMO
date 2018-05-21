@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Main from '../views/Main.vue'
 import Home from '../views/home/Home.vue'
 import Dynamics from '../views/dynamics/Dynamics.vue'
-import Write from '../views/write/Write.vue'
+import Editor from '../views/editor/Editor.vue'
 import Message from '../views/message/Message.vue'
 import Me from '../views/me/Me.vue'
 import Contribution from '../components/me/Contribution.vue'
@@ -15,6 +15,7 @@ import Register from '../views/Register.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -30,8 +31,8 @@ export default new Router({
           component: Dynamics
         },
         {
-          path: 'write',
-          component: Write
+          path: 'editor',
+          component: Editor
         },
         {
           path: 'message',

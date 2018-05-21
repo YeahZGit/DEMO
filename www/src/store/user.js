@@ -12,21 +12,21 @@ const mutations = {
   // },
   AUTHORIZE: (state, user) => {
     state.userInfo = user
-    console.log(user)
     localStorage.setItem('userInfo', JSON.stringify(user))
   }
 }
 
 const actions = {
   REGISTER: ({ commit, state }, user) => {
-    return userResource.register(user)
-    // .then(res => {
-    //   commit('REGISTER', res.body)
-    // })
+    return userResource.register(user).then(() => {
+      location.href = '/login'
+    })
   },
   AUTHORIZE: ({ commit, state }, user) => {
     return userResource.authorize(user).then(res => {
-      commit('AUTHORIZE', res.data)
+      if (res.status === 200 && res.data) {
+        commit('AUTHORIZE', res.data)
+      }
     })
   }
 }

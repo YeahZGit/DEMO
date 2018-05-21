@@ -14,7 +14,7 @@
         </router-link>
       </li>
       <li class="nav-btn">
-        <router-link to="/write">
+        <router-link to="/editor">
           <span class="write-btn">+</span>
         </router-link>
       </li>
