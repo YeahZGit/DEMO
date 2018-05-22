@@ -8,6 +8,7 @@ const themeController = require('./theme');
 const dynamicsController = require('./dynamics');
 const userController = require('./user');
 const uploadController = require('./upload');
+const searchController = require('./search');
 
 router.route('/theme')
   .post(themeController.addTheme)
@@ -51,9 +52,12 @@ router.route('/users/:userId/follows/:followId')
   .delete(userController.removeFollow)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-
 router.route('/dynamics')
   .post(dynamicsController.addDynamics)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/dynamics/recommend')
+  .get(dynamicsController.getRecommendDynamics)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/dynamics/:dynamicsId')
@@ -65,9 +69,13 @@ router.route('/dynamics/self/:userId')
   .get(dynamicsController.getSelfDynamicsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-// 获取关注动态
+  // 获取关注动态
 router.route('/dynamics/follow/:userId')
   .get(dynamicsController.getDynamicsByUserId)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/search/:query')
+  .get(searchController.search)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/uploads/pictures')

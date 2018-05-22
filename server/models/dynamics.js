@@ -30,10 +30,17 @@ dynamicsSchema.statics = {
     return this.findByIdAndUpdate(dynamicsId, newDynamics);
   },
   getSelfDynamicsByUserId (userId) {
-    return this.find({ author: userId }).populate('author');
+    return this.find({ author: userId }).sort({ create_at: -1 }).populate('author');
   },
   getDynamicsByFollowId (followIds) {
-    return this.find({ author: {$in: followIds} }).sort({create_at: -1}).populate('author');
+    return this.find({ author: {$in: followIds} }).sort({ create_at: -1 }).populate('author');
+  },
+  getRecommendDynamics () {
+    return this.find({ type: 2 }).sort({ approve_count: -1 }).populate('author');
+  },
+  fuzzyQuerByTitleAndContent (query) {
+    let reg = new RegExp(query, 'i');
+    return this.find({ $or: [{ title: reg }, { content: reg }]});
   }
 }
 

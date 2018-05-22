@@ -49,6 +49,10 @@ userSchema.statics = {
   },
   getAllFollowsByUserId (userId) {
     return this.findById(userId).populate('follow').exec();
+  },
+  fuzzyQueryByUserName (query) {
+    let reg = new RegExp(query, 'i');
+    return this.find({ username: reg });
   }
 }
 

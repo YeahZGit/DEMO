@@ -44,4 +44,10 @@ dynamicsController.getDynamicsByUserId = (req, res, next) => {
   }).catch(next);
 }
 
+dynamicsController.getRecommendDynamics = (req, res, next) => {
+  Dynamics.getRecommendDynamics().then(dynamics => {
+    res.success(dynamics);
+  }).catch(next);
+}
+
 module.exports = dynamicsController;
