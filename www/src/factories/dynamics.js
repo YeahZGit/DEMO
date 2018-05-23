@@ -9,6 +9,9 @@ const dynamicsResource = {
   },
   getDynamicsByUserId (userId) {
     return instance.get('/dynamics/follow/' + userId)
+  },
+  getRecommendDynamics () {
+    return instance.get('/dynamics/recommend')
   }
 }
 

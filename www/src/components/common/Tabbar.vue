@@ -45,6 +45,7 @@ export default {
   bottom: 0;
   width: 100%;
   background-color: white;
+  opacity: 0.97;
   .tabbar {
     height: 3rem;
     font-size: 0.75rem;

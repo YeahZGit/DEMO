@@ -14,34 +14,6 @@
         <div class="option">取消关注</div>
       </section>
     </section>
-    <section class="fans-item">
-      <div class="info">
-        <section class="img-wrapper">
-          <img src="../../assets/img/maomi.jpg">
-        </section>
-        <section class="info-wrapper">
-          <div>李四</div>
-          <div>最新动态</div>
-        </section>
-      </div>
-      <section class="options-wrapper">
-        <div class="option">取消关注</div>
-      </section>
-    </section>
-    <section class="fans-item">
-      <div class="info">
-        <section class="img-wrapper">
-          <img src="../../assets/img/maomi.jpg">
-        </section>
-        <section class="info-wrapper">
-          <div>李四</div>
-          <div>最新动态</div>
-        </section>
-      </div>
-      <section class="options-wrapper">
-        <div class="option">取消关注</div>
-      </section>
-    </section>
   </div>
 </template>
 

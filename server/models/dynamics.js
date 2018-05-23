@@ -40,7 +40,7 @@ dynamicsSchema.statics = {
   },
   fuzzyQuerByTitleAndContent (query) {
     let reg = new RegExp(query, 'i');
-    return this.find({ $or: [{ title: reg }, { content: reg }]});
+    return this.find({ $or: [{ title: reg }, { content: reg }]}).populate('author');
   }
 }
 

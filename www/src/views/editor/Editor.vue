@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      showTextEditor: true
+      showTextEditor: false
     }
   },
   methods: {

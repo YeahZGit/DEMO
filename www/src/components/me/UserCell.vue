@@ -1,11 +1,11 @@
 <template>
-  <div class="fans">
-    <section class="fans-item">
+  <div class="user-cell">
+    <section class="item">
       <section class="img-wrapper">
         <img src="../../assets/img/maomi.jpg">
       </section>
       <section class="info-wrapper">
-        <div>张三</div>
+        <div>{{ user.username }}</div>
         <div>最新动态</div>
       </section>
     </section>
@@ -14,16 +14,19 @@
 
 <script>
 export default {
-  name: 'Fans'
+  name: 'UserCell',
+  props: {
+    user: {
+      type: Object,
+      default: () => {}
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.fans {
-  height: 80vh;
-  background-color: white;
-  margin-top: 0.8rem;
-  .fans-item {
+.user-cell {
+  .item {
     height: 4.2rem;
     display: flex;
     align-items: center;

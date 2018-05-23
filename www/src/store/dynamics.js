@@ -4,7 +4,8 @@ const dynamicsResource = Api.dynamicsResource
 
 const state = {
   selfDynamics: [],
-  dynamics: []
+  dynamics: [],
+  recommendDynamics: []
 }
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
   },
   GET_DYNAMICS_BY_USER_ID: (state, dynamics) => {
     state.dynamics = dynamics
+  },
+  GET_RECOMMEND_DYNAMICS: (state, dynamics) => {
+    state.recommendDynamics = dynamics
   }
 }
 
@@ -31,6 +35,13 @@ const actions = {
     return dynamicsResource.getDynamicsByUserId(userId).then(res => {
       if (res.status === 200 && res.data) {
         commit('GET_DYNAMICS_BY_USER_ID', res.data)
+      }
+    })
+  },
+  GET_RECOMMEND_DYNAMICS: ({ commit, state }) => {
+    return dynamicsResource.getRecommendDynamics().then(res => {
+      if (res.status === 200 && res.data) {
+        commit('GET_RECOMMEND_DYNAMICS', res.data)
       }
     })
   }

@@ -3,43 +3,107 @@
     <div class="search-header">
       <aside class="logo" v-show="!focus">FoodKey</aside>
       <aside class="search-input">
-        <input
-          type="text"
-          placeholder="search"
-          @focus="focusHandler">
+        <form @submit="searchHandler" action="#">
+          <input
+            type="search"
+            placeholder="搜索动态/用户"
+            @focus="focusHandler"
+            v-model="query">
+          <input type="submit" value="">
+        </form>
       </aside>
       <aside class="cancel-btn">
         <span @click="cancel" v-show="focus">取消</span>
+        <!-- <span @click="searchHandler" v-show="focus" class="search-btn">搜索</span> -->
       </aside>
     </div>
     <div class="search-content" v-show="focus">
       <section class="history">
-        <header>历史纪录</header>
+        <header class="header">历史纪录</header>
+        <div class="history-tag">
+          <tag :tags="history" @useHistory="clickHistory"></tag>
+        </div>
       </section>
-      <section class-="users">
-        <header>相关用户</header>
+      <section class-="users" v-if="searchContent.users.length">
+        <header class="header">相关用户</header>
+        <user-cell
+          v-for="item in searchContent.users"
+          :key="item._id"
+          :user="item">
+        </user-cell>
       </section>
-      <section class="dynamics">
-        <header>相关动态</header>
+      <section class="dynamics" v-if="searchContent.dynamics.length">
+        <header class="header">相关动态</header>
+        <dynamics-item
+          v-for="item in searchContent.dynamics"
+          :key="item._id"
+          :item="item">
+        </dynamics-item>
       </section>
+      <div class="prompt" v-show="showPrompt">未找到相关内容...</div>
     </div>
   </div>
 </template>
 
 <script>
+import Tag from '../common/Tag.vue'
+import UserCell from '../me/UserCell.vue'
+import DynamicsItem from '../dynamics/DynamicsItem.vue'
+import { mapActions } from 'vuex'
+import { setSearchHistory, getSearchHistory } from '../../utils/searchHistory'
+
 export default {
   name: 'Search',
+  components: {
+    Tag,
+    UserCell,
+    DynamicsItem
+  },
   data () {
     return {
-      focus: false
+      focus: false,
+      query: null,
+      searchContent: {
+        users: [],
+        dynamics: []
+      },
+      history: [],
+      showPrompt: false
     }
   },
   methods: {
+    ...mapActions('search', {
+      search: 'SEARCH'
+    }),
     focusHandler () {
       this.focus = true
+      this.history = getSearchHistory()
     },
     cancel () {
       this.focus = false
+      this.query = null
+      this.showPrompt = false
+      this.searchContent.users = []
+      this.searchContent.dynamics = []
+    },
+    searchHandler () {
+      if (this.query) {
+        setSearchHistory(this.query)
+        this.search({ query: this.query }).then(res => {
+          if (res.status === 200 && res.data) {
+            this.searchContent = res.data
+            if (!this.searchContent.users.length && !this.searchContent.dynamics.length) {
+              this.showPrompt = true
+            } else {
+              this.showPrompt = false
+            }
+          }
+        })
+      }
+    },
+    clickHistory (queryStr) {
+      this.query = queryStr
+      this.searchHandler()
     }
   }
 }
@@ -52,7 +116,7 @@ export default {
   padding: 0.8rem 1rem;
   .search-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     .logo {
       line-height: 1.8rem;
       vertical-align: middle;
@@ -65,32 +129,57 @@ export default {
       border-radius: 2rem;
       width: 80%;
       background-color: rgba(245, 246, 250, 0.5);
-      input {
-        outline: none;
-        border: none;
-        display: block;
-        width: 90%;
-        margin: 0.3rem auto;
-        background-color: rgba(245, 246, 250, 0);
-        font-size: 0.9rem;
-        color: #7f8c8d;
+      form {
+        width: 100%;
+        input {
+          outline: none;
+          border: none;
+          display: block;
+          width: 90%;
+          margin: 0.3rem auto;
+          background-color: rgba(245, 246, 250, 0);
+          font-size: 0.9rem;
+          color: #7f8c8d;
+        }
       }
     }
   }
 }
 .focus {
-  height: 100vh;
-  position: fixed;
+  min-height: 100vh;
+  position: absolute;
   background: white;
   z-index: 100;
   line-height: 1.8rem;
+  .search-input {
+    width: 85% !important;
+  }
   .cancel-btn {
     width: 15%;
     text-align: center;
+    color: #ced6e0;
+    .search-btn {
+      width: 3rem;
+      background-color: #fa983a;
+      color: white;
+      border-radius: 1rem;
+      margin-left: 0.2rem;
+    }
   }
   .search-content {
     padding: 0.5rem 0;
     font-size: 0.8rem;
+    & > section {
+      margin-bottom: 1rem;
+    }
+    .prompt {
+      margin-top: 0.5rem;
+      color: #dcdde1;
+    }
+    .header {
+      color: #4b4b4b;
+      font-weight: 900;
+    }
   }
 }
 </style>

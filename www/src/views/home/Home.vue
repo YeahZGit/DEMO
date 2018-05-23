@@ -5,47 +5,21 @@
     </header>
     <section class="swipe">
       <mt-swipe>
-        <mt-swipe-item>
-          <img src="../../assets/img/food.jpg">
-        </mt-swipe-item>
-        <mt-swipe-item>
-          <img src="../../assets/img/food.jpg">
-        </mt-swipe-item>
-        <mt-swipe-item>
-          <img src="../../assets/img/food.jpg">
+        <mt-swipe-item
+          v-for="item in theme0"
+          :key="item._id">
+          <img :src="item.page_url">
         </mt-swipe-item>
       </mt-swipe>
     </section>
     <section class="nav-wrapper">
-      <section class="nav-item">
+      <section class="nav-item"
+        v-for="item in theme1"
+        :key="item._id">
         <div class="nav-img">
-          <img src="../../assets/img/food.jpg">
+          <img :src="item.page_url">
         </div>
-        <div class="nav-title">标题</div>
-      </section>
-       <section class="nav-item">
-        <div class="nav-img">
-          <img src="../../assets/img/food.jpg">
-        </div>
-        <div class="nav-title">标题</div>
-      </section>
-       <section class="nav-item">
-        <div class="nav-img">
-          <img src="../../assets/img/food.jpg">
-        </div>
-        <div class="nav-title">标题</div>
-      </section>
-       <section class="nav-item">
-        <div class="nav-img">
-          <img src="../../assets/img/food.jpg">
-        </div>
-        <div class="nav-title">标题</div>
-      </section>
-       <section class="nav-item">
-        <div class="nav-img">
-          <img src="../../assets/img/food.jpg">
-        </div>
-        <div class="nav-title">标题</div>
+        <div class="nav-title">{{ item.title }}</div>
       </section>
     </section>
     <section class="recommend-list">
@@ -57,10 +31,35 @@
 <script>
 import Search from '../../components/home/Search.vue'
 import RecommendList from '../../components/home/RecommendList.vue'
+import { mapActions } from 'vuex'
+
 export default {
   components: {
     Search,
     RecommendList
+  },
+  data () {
+    return {
+      theme0: [],
+      theme1: []
+    }
+  },
+  methods: {
+    ...mapActions('theme', {
+      getThemeByLevel: 'GET_THEME_BY_LEVEL'
+    })
+  },
+  created () {
+    this.getThemeByLevel({ level: 0 }).then(res => {
+      if (res.status === 200 && res.data) {
+        this.theme0 = res.data
+      }
+    })
+    this.getThemeByLevel({ level: 1 }).then(res => {
+      if (res.status === 200 && res.data) {
+        this.theme1 = res.data
+      }
+    })
   }
 }
 </script>

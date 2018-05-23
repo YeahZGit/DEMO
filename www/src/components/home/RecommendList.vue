@@ -1,59 +1,51 @@
 <template>
   <div class="recomment grid-item">
-    <section class="recomment-item">
+    <section
+      class="recomment-item"
+      v-for="item in dynamics"
+      :key="item._id">
       <section class="header-img">
-        <img src="../../assets/img/food.jpg">
+        <img :src="item.title_img">
       </section>
       <section class="title">
-        <div>这是一个标题</div>
+        <div>{{ item.title }}</div>
       </section>
       <section class="info">
-        <aside class="header"><img src="../../assets/img/maomi.jpg"></aside>
-        <aside class="approve"><img src="../../assets/img/approve.svg"> 100</aside>
-      </section>
-    </section>
-    <section class="recomment-item">
-      <section class="header-img">
-        <img src="../../assets/img/food.jpg">
-      </section>
-      <section class="title">
-        <div>这是一个标题</div>
-      </section>
-      <section class="info">
-        <aside class="header"><img src="../../assets/img/maomi.jpg"></aside>
-        <aside class="approve"><img src="../../assets/img/approve.svg"> 100</aside>
-      </section>
-    </section>
-    <section class="recomment-item">
-      <section class="header-img">
-        <img src="../../assets/img/food.jpg">
-      </section>
-      <section class="title">
-        <div>这是一个标题</div>
-      </section>
-      <section class="info">
-        <aside class="header"><img src="../../assets/img/maomi.jpg"></aside>
-        <aside class="approve"><img src="../../assets/img/approve.svg"> 100</aside>
-      </section>
-    </section>
-    <section class="recomment-item">
-      <section class="header-img">
-        <img src="../../assets/img/food.jpg">
-      </section>
-      <section class="title">
-        <div>这是一个标题</div>
-      </section>
-      <section class="info">
-        <aside class="header"><img src="../../assets/img/maomi.jpg"></aside>
-        <aside class="approve"><img src="../../assets/img/approve.svg"> 100</aside>
+        <aside class="header"><img :src="item.author.picture_url"></aside>
+        <aside class="approve">
+          <img src="../../assets/img/approve.svg">
+          <span>{{ item.approve_count }}</span>
+        </aside>
       </section>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
-  name: 'RecommendList'
+  name: 'RecommendList',
+  data () {
+    return {
+      dynamics: []
+    }
+  },
+  computed: {
+    ...mapState('dynamics', {
+      recommendDynamics: state => state.recommendDynamics
+    })
+  },
+  methods: {
+    ...mapActions('dynamics', {
+      getRecommendDynamics: 'GET_RECOMMEND_DYNAMICS'
+    })
+  },
+  created () {
+    this.getRecommendDynamics().then(() => {
+      this.dynamics = this.recommendDynamics
+    })
+  }
 }
 </script>
 
