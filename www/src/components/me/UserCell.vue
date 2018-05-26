@@ -4,10 +4,16 @@
       <section class="img-wrapper">
         <img src="../../assets/img/maomi.jpg">
       </section>
-      <section class="info-wrapper">
-        <div>{{ user.username }}</div>
-        <div>最新动态</div>
-      </section>
+      <div>
+        <section class="info-wrapper">
+          <div>{{ user.username }}</div>
+          <div>{{ user.introduction }}</div>
+        </section>
+        <section>
+          <div @click="addFollow">关注</div>
+          <div @click="removeFollow">取消关注</div>
+        </section>
+      </div>
     </section>
   </div>
 </template>
@@ -19,6 +25,20 @@ export default {
     user: {
       type: Object,
       default: () => {}
+    }
+  },
+  methods: {
+    addFollow (followId) {
+      this.$emit('addFollow', followId)
+      // this.addFollow(this.currentUserId, followId).then(() => {
+      //   this.$emit('getFollows')
+      // })
+    },
+    removeFollow (followId) {
+      this.$emit('removeFollow', followId)
+      // this.removeFollow(this.currentUserId, followId).then(() => {
+      //   this.$emit('getFollows')
+      // })
     }
   }
 }

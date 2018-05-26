@@ -20,10 +20,10 @@ const userResource = {
     return instance.get('/users/' + id + '/follows')
   },
   addFollow (userId, followId) {
-    return instance.put('/users/' + userId + '/follows/' + followId)
+    return instance.put('/users/' + userId + '/add-follow/' + followId)
   },
   removeFollow (userId, followId) {
-    return instance.delete('/users/' + userId + '/follows/' + followId)
+    return instance.put('/users/' + userId + '/remove-follow/' + followId)
   }
 }
 

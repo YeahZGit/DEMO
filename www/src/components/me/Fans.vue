@@ -1,6 +1,6 @@
 <template>
   <div class="fans">
-    <section class="fans-item">
+    <!-- <section class="fans-item">
       <section class="img-wrapper">
         <img src="../../assets/img/maomi.jpg">
       </section>
@@ -8,13 +8,19 @@
         <div>张三</div>
         <div>最新动态</div>
       </section>
-    </section>
+    </section> -->
+    <user-cell></user-cell>
   </div>
 </template>
 
 <script>
+import UserCell from './UserCell.vue'
+
 export default {
-  name: 'Fans'
+  name: 'Fans',
+  components: {
+    UserCell
+  }
 }
 </script>
 

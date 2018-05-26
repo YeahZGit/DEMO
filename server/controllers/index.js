@@ -40,16 +40,19 @@ router.route('/users/:userId/fans')
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/users/:userId/fans/:fansId')
-  .delete(userController.removeFans)
+  .put(userController.removeFans)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/users/:userId/follows')
   .get(userController.getAllFollowsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-router.route('/users/:userId/follows/:followId')
+router.route('/users/:userId/add-follow/:followId')
   .put(userController.addFollow)
-  .delete(userController.removeFollow)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/users/:userId/remove-follow/:followId')
+  .put(userController.removeFollow)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/dynamics')
@@ -69,7 +72,7 @@ router.route('/dynamics/self/:userId')
   .get(dynamicsController.getSelfDynamicsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-  // 获取关注动态
+// 获取关注动态
 router.route('/dynamics/follow/:userId')
   .get(dynamicsController.getDynamicsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });

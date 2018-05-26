@@ -1,6 +1,6 @@
 <template>
   <div class="follow">
-    <section class="fans-item">
+    <!-- <section class="fans-item">
       <div class="info">
         <section class="img-wrapper">
           <img src="../../assets/img/maomi.jpg">
@@ -13,13 +13,48 @@
       <section class="options-wrapper">
         <div class="option">取消关注</div>
       </section>
-    </section>
+    </section> -->
+    <user-cell
+      v-for="user in follows"
+      :key="user._id"
+      :user="user"
+      @addFollow="addFollowHandler"
+      @removeFollow="removeFollowHandler">
+    </user-cell>
   </div>
 </template>
 
 <script>
+import UserCell from './UserCell.vue'
+import { mapActions, mapState } from 'vuex'
+
 export default {
-  name: 'Follow'
+  name: 'Follow',
+  components: {
+    UserCell
+  },
+  computed: {
+    ...mapState('user', {
+      follows: state => state.allFollows
+    })
+  },
+  methods: {
+    ...mapActions('user', {
+      getAllFollows: 'GET_ALL_FOLLOWS_BY_USER_ID',
+      addFollow: 'ADD_FOLLOW',
+      removeFollow: 'REMOVE_FOLLOW'
+    }),
+    addFollowHandler () {
+      this.addFollow({})
+    },
+    removeFollowHandler () {
+
+    }
+  },
+  created () {
+    let userId = JSON.parse(localStorage.getItem('userInfo'))._id;
+    this.getAllFollows({ userId })
+  }
 }
 </script>
 

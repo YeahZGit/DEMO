@@ -42,10 +42,14 @@ userSchema.statics = {
     return this.findById(userId).populate('fans').exec();
   },
   addFollow (userId, followId) {
-    return this.findByIdAndUpdate(userId, {$push: { follow: followId }});
+    return this.findByIdAndUpdate(userId, {$push: { follow: followId }}).exec(() => {
+      this.findByIdAndUpdate(followId, { $push: { fans: userId } });
+    });
   },
   removeFollow (userId, followId) {
-    return this.findByIdAndUpdate(userId, {$pull: { follow: followId }});
+    return this.findByIdAndUpdate(userId, { $pull: { follow: followId } }).exec(() => {
+      this.findByIdAndUpdate(followId, { $pull: { fans: userId } });
+    });;
   },
   getAllFollowsByUserId (userId) {
     return this.findById(userId).populate('follow').exec();
