@@ -9,17 +9,36 @@
         <div>最新动态</div>
       </section>
     </section> -->
-    <user-cell></user-cell>
+    <user-cell
+      v-for="user in fans"
+      :key="user._id"
+      :user="user">
+    </user-cell>
   </div>
 </template>
 
 <script>
 import UserCell from './UserCell.vue'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Fans',
   components: {
     UserCell
+  },
+  computed: {
+    ...mapState('user', {
+      userId: state => state.userInfo._id,
+      fans: state => state.fans
+    })
+  },
+  methods: {
+    ...mapActions('user', {
+      getAllFans: 'GET_ALL_FANS_BY_USER_ID'
+    })
+  },
+  created () {
+    this.getAllFans({ userId: this.userId })
   }
 }
 </script>

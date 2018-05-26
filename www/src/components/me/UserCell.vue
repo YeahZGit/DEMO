@@ -4,14 +4,14 @@
       <section class="img-wrapper">
         <img src="../../assets/img/maomi.jpg">
       </section>
-      <div>
+      <div class="right">
         <section class="info-wrapper">
           <div>{{ user.username }}</div>
-          <div>{{ user.introduction }}</div>
+          <div>{{ user.introduction || '暂无简介'}}</div>
         </section>
-        <section>
-          <div @click="addFollow">关注</div>
-          <div @click="removeFollow">取消关注</div>
+        <section class="options-btn">
+          <div @click="addFollow" v-if="user.isFollow">关注</div>
+          <div @click="removeFollow" v-else>取消关注</div>
         </section>
       </div>
     </section>
@@ -30,15 +30,9 @@ export default {
   methods: {
     addFollow (followId) {
       this.$emit('addFollow', followId)
-      // this.addFollow(this.currentUserId, followId).then(() => {
-      //   this.$emit('getFollows')
-      // })
     },
     removeFollow (followId) {
       this.$emit('removeFollow', followId)
-      // this.removeFollow(this.currentUserId, followId).then(() => {
-      //   this.$emit('getFollows')
-      // })
     }
   }
 }
@@ -61,13 +55,29 @@ export default {
         border-radius: 50%;
       }
     }
-    .info-wrapper {
-      div:first-child {
-        font-weight: 800;
-        color: #666;
+    .right {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      align-items: center;
+      .info-wrapper {
+        div:first-child {
+          font-weight: 800;
+          color: #666;
+        }
+        div:last-child {
+          margin-top: 0.2rem;
+        }
       }
-      div:last-child {
-        margin-top: 0.2rem;
+      .options-btn {
+        padding-right: 0.8rem;
+        div {
+          border: 1px solid #fa983a;
+          color: #fa983a;
+          border-radius: 0.4rem;
+          line-height: 1rem;
+          padding: 0.2rem 0.3rem;
+        }
       }
     }
   }

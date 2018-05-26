@@ -34,8 +34,8 @@ userController.removeFans = (req, res, next) => {
 
 userController.getAllFansByUserId = (req, res, next) => {
   const userId = req.params.userId;
-  User.getAllFansByUserId(userId).then(fans => {
-    res.success(fans);
+  User.getAllFansByUserId(userId).then(user => {
+    res.success(user.fans);
   }).catch(next);
 }
 
@@ -61,8 +61,8 @@ userController.removeFollow = (req, res, next) => {
 
 userController.getAllFollowsByUserId = (req, res, next) => {
   const userId = req.params.userId;
-  User.getAllFollowsByUserId(userId).then(follows => {
-    res.success(follows);
+  User.getAllFollowsByUserId(userId).then(user => {
+    res.success(user.follow);
   }).catch(next);
 }
 

@@ -3,7 +3,7 @@
     <section class="header-item" @click="$emit('cancel')">取消</section>
     <section class="header-item">{{ title }}</section>
     <section class="header-item">
-      <div class="release" @click="$emit('release')">发布</div>
+      <div class="release" @click="$emit('release')">{{ button || '发布'}}</div>
     </section>
   </div>
 </template>
@@ -12,7 +12,8 @@
 export default {
   name: 'EditorHeader',
   props: [
-    'title'
+    'title',
+    'button'
   ],
   methods: {
   }

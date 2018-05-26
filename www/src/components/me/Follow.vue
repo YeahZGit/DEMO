@@ -1,25 +1,11 @@
 <template>
   <div class="follow">
-    <!-- <section class="fans-item">
-      <div class="info">
-        <section class="img-wrapper">
-          <img src="../../assets/img/maomi.jpg">
-        </section>
-        <section class="info-wrapper">
-          <div>李四</div>
-          <div>最新动态</div>
-        </section>
-      </div>
-      <section class="options-wrapper">
-        <div class="option">取消关注</div>
-      </section>
-    </section> -->
     <user-cell
       v-for="user in follows"
       :key="user._id"
       :user="user"
-      @addFollow="addFollowHandler"
-      @removeFollow="removeFollowHandler">
+      @addFollow="addFollowHandler(user._id)"
+      @removeFollow="removeFollowHandler(user._id)">
     </user-cell>
   </div>
 </template>
@@ -35,6 +21,7 @@ export default {
   },
   computed: {
     ...mapState('user', {
+      userId: state => state.userInfo._id,
       follows: state => state.allFollows
     })
   },
@@ -44,16 +31,15 @@ export default {
       addFollow: 'ADD_FOLLOW',
       removeFollow: 'REMOVE_FOLLOW'
     }),
-    addFollowHandler () {
-      this.addFollow({})
+    addFollowHandler (followId) {
+      this.addFollow({ userId: this.userId, followId })
     },
-    removeFollowHandler () {
-
+    removeFollowHandler (followId) {
+      this.removeFollowHandler({ userId: this.userId, followId })
     }
   },
   created () {
-    let userId = JSON.parse(localStorage.getItem('userInfo'))._id;
-    this.getAllFollows({ userId })
+    this.getAllFollows({ userId: this.userId })
   }
 }
 </script>
