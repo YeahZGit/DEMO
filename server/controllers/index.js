@@ -77,8 +77,8 @@ router.route('/dynamics/follow/:userId')
   .get(dynamicsController.getDynamicsByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
-router.route('/search/:query')
-  .get(searchController.search)
+router.route('/search')
+  .post(searchController.search)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/uploads/pictures')

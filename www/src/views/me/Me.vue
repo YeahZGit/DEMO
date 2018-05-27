@@ -2,18 +2,12 @@
   <div class="me">
     <header class="me-header">
       <aside class="img-wrapper">
-        <img v-if="token" src="../../assets/img/maomi.jpg">
-        <router-link
-          v-else
-          class="login-btn"
-          to="/login">
-          点击登录
-        </router-link>
+        <img :src="headerUrl">
       </aside>
       <aside class="me-info">
         <div>
-          <section>猫咪老师</section>
-          <section class="introduction">简介：夏目友人帐猫咪老师</section>
+          <section>{{ user.username }}</section>
+          <section class="introduction">简介：{{ user.introduction || '暂无简介'}}</section>
         </div>
       </aside>
     </header>
@@ -26,14 +20,20 @@
 
 <script>
 import SwitchBar from '../../components/me/SwitchBar.vue'
+import { mapState } from 'vuex'
+import configs from '../../constants/configs.js'
+
 export default {
   name: 'Me',
   components: {
     SwitchBar
   },
-  data () {
-    return {
-      token: null
+  computed: {
+    ...mapState('user', {
+      user: state => state.userInfo
+    }),
+    headerUrl () {
+      return configs.API_BASE + this.user.picture_url
     }
   }
 }
@@ -49,7 +49,7 @@ export default {
   height: 6rem;
   background: white;
   .img-wrapper {
-    width: 30%;
+    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;

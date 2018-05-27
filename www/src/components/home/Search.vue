@@ -49,7 +49,7 @@
 import Tag from '../common/Tag.vue'
 import UserCell from '../me/UserCell.vue'
 import DynamicsItem from '../dynamics/DynamicsItem.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { setSearchHistory, getSearchHistory } from '../../utils/searchHistory'
 
 export default {
@@ -71,6 +71,11 @@ export default {
       showPrompt: false
     }
   },
+  computed: {
+    ...mapState('user', {
+      user: state => state.userInfo
+    })
+  },
   methods: {
     ...mapActions('search', {
       search: 'SEARCH'
@@ -89,7 +94,7 @@ export default {
     searchHandler () {
       if (this.query) {
         setSearchHistory(this.query)
-        this.search({ query: this.query }).then(res => {
+        this.search({ query: this.query, userId: this.user._id }).then(res => {
           if (res.status === 200 && res.data) {
             this.searchContent = res.data
             if (!this.searchContent.users.length && !this.searchContent.dynamics.length) {

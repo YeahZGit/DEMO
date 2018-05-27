@@ -9,7 +9,7 @@ const mutations = {
 }
 
 const actions = {
-  SEARCH: ({ commit, state }, { query }) => {
+  SEARCH: ({ commit, state }, query) => {
     return searchResource.search(query)
   }
 }

@@ -9,6 +9,7 @@ const userSchema = new Schema({
   picture_url: String,
   phone_number: String,
   introduction: String,
+  is_follow: { type: Boolean, default: false },
   fans: [{ type: ObjectId, ref: 'User' }],
   follow: [{ type: ObjectId, ref: 'User' }]
 })

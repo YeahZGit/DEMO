@@ -16,6 +16,10 @@ const mutations = {
     state.userInfo = user
     localStorage.setItem('userInfo', JSON.stringify(user))
   },
+  UPDATE_USER_BY_ID: (state, user) => {
+    state.userInfo = user
+    localStorage.setItem('userInfo', JSON.stringify(user))
+  },
   GET_ALL_FOLLOWS_BY_USER_ID: (state, follows) => {
     state.allFollows = follows
   },
@@ -34,6 +38,13 @@ const actions = {
     return userResource.authorize(user).then(res => {
       if (res.status === 200 && res.data) {
         commit('AUTHORIZE', res.data)
+      }
+    })
+  },
+  UPDATE_USER_BY_ID: ({ commit, state }, user) => {
+    return userResource.updateUserById(user._id, user).then(res => {
+      if (res.status === 200 && res.data) {
+        commit('UPDATE_USER_BY_ID', res.data)
       }
     })
   },

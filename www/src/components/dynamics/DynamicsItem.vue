@@ -2,7 +2,7 @@
   <div class="dynamics-item">
     <div class="item">
       <header class="header">
-        <aside class="user-img"><img src="../../assets/img/maomi.jpg"></aside>
+        <aside class="user-img"><img :src="headerUrl"></aside>
         <aside class="user-info">
           <span class="user-name">{{ item.author.username }}</span>
           <span class="create-time">{{ item.create_at }}</span>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import configs from '../../constants/configs.js'
+
 export default {
   name: 'DynamicsItem',
   props: {
@@ -48,6 +50,11 @@ export default {
     type: {
       type: Number,
       default: 1
+    }
+  },
+  computed: {
+    headerUrl () {
+      return configs.API_BASE + this.item.author.picture_url
     }
   }
 }

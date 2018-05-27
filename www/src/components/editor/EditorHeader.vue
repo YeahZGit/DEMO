@@ -14,9 +14,7 @@ export default {
   props: [
     'title',
     'button'
-  ],
-  methods: {
-  }
+  ]
 }
 </script>
 

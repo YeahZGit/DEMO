@@ -10,8 +10,9 @@ userController.addUser = (req, res, next) => {
 }
 
 userController.updateUserById = (req, res, next) => {
-  const userId = req.params.UserId;
+  const userId = req.params.userId;
   User.updateUserById(userId, req.body).then(user => {
+    console.log(user)
     return User.findUserById(user._id);
   }).then(user => {
     res.success(user);
