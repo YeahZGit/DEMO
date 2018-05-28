@@ -9,6 +9,7 @@ const dynamicsController = require('./dynamics');
 const userController = require('./user');
 const uploadController = require('./upload');
 const searchController = require('./search');
+const commentController = require('./comment');
 
 router.route('/theme')
   .post(themeController.addTheme)
@@ -80,6 +81,14 @@ router.route('/dynamics/follow/:userId')
 
 router.route('/search')
   .post(searchController.search)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/comments')
+  .post(commentController.addComment)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+
+router.route('/comments/:dynamicsId')
+  .get(commentController.getCommentsByDynamicsId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/uploads/pictures')
