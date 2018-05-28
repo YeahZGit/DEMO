@@ -35,12 +35,12 @@ export default {
     border-bottom: 1px solid #e6e6e6;
     padding-left: 1.2rem;
     .comment {
-      background-color: #b33939 !important;
+      background-color: #22a6b3 !important;
     }
     .icon {
       width: 3rem;
       height: 3rem;
-      background-color: #218c74;
+      background-color: #dff9fb;
       border-radius: 50%;
       display: flex;
       align-items: center;

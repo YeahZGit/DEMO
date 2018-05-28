@@ -6,7 +6,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    let userInfo = localStorage.getItem('userInfo')
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+      this.$store.state.user.userInfo = userInfo
+    }
+    // else {
+    //   // 登录或关闭无痕模式
+    // }
+  }
 }
 </script>
 

@@ -5,7 +5,6 @@
       <dynamics-item :item="dynamics"></dynamics-item>
     </div>
     <comment></comment>
-    <comment></comment>
   </div>
 </template>
 

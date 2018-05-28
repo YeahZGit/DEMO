@@ -9,4 +9,4 @@ const commentResource = {
   }
 }
 
-module.exports = commentResource
+export default commentResource

@@ -14,7 +14,7 @@ commentSchema.statics = {
     return comment.save();
   },
   getCommentsByDynamicsId (dynamicsId) {
-    return this.find({ dynamics: dynamicsId });
+    return this.find({ dynamics: dynamicsId }).populate('commentator');
   }
 }
 

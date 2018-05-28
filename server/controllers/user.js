@@ -1,5 +1,7 @@
 const HttpError = require('some-http-error');
 const User = require('../models').User;
+const UserService  = require('../services').userService;
+
 const userController = {};
 
 userController.addUser = (req, res, next) => {
@@ -63,7 +65,9 @@ userController.removeFollow = (req, res, next) => {
 userController.getAllFollowsByUserId = (req, res, next) => {
   const userId = req.params.userId;
   User.getAllFollowsByUserId(userId).then(user => {
-    res.success(user.follow);
+    return UserService.addIsFollow(userId, user.follow);
+  }).then(follows => {
+    res.success(follows);
   }).catch(next);
 }
 
