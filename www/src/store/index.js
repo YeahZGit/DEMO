@@ -5,6 +5,7 @@ import upload from './upload'
 import dynamics from './dynamics'
 import theme from './theme'
 import search from './search'
+import comment from './comment'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     upload,
     dynamics,
     theme,
-    search
+    search,
+    comment
   }
 })
 
