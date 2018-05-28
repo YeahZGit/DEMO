@@ -127,6 +127,7 @@ export default {
       vertical-align: middle;
       width: 20%;
       text-align: center;
+      color: #fa983a;
     }
     .search-input {
       height: 1.8rem;

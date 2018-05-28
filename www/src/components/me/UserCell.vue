@@ -7,9 +7,9 @@
       <div class="right">
         <section class="info-wrapper">
           <div>{{ user.username }}</div>
-          <div>{{ user.introduction || '暂无简介'}}</div>
+          <div>{{ user.introduction || '暂无简介' }}</div>
         </section>
-        <section class="options-btn">
+        <section class="options-btn" v-if="user.is_follow !== 2">
           <div @click="addFollowHandler(user._id)" v-if="!user.is_follow">关 注</div>
           <div @click="removeFollowHandler(user._id)" v-else>取消关注</div>
         </section>
@@ -91,11 +91,12 @@ export default {
         div {
           border: 1px solid #fa983a;
           color: #fa983a;
-          border-radius: 0.4rem;
+          border-radius: 0.3rem;
           line-height: 1rem;
-          padding: 0.2rem 0.3rem;
+          padding: 0.05rem 0.3rem;
           min-width: 3.5rem;
           text-align: center;
+          font-size: 0.8rem;
         }
       }
     }
