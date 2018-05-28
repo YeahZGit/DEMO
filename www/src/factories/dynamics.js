@@ -12,6 +12,9 @@ const dynamicsResource = {
   },
   getRecommendDynamics () {
     return instance.get('/dynamics/recommend')
+  },
+  getDynamicsById (dynamicsId) {
+    return instance.get('/dynamics/' + dynamicsId)
   }
 }
 

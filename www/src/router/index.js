@@ -12,6 +12,7 @@ import Follow from '../components/me/Follow.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import InfoEditor from '../components/me/InfoEditor.vue'
+import DynamicsDetail from '../views/dynamics/DynamicsDetail'
 
 Vue.use(Router)
 
@@ -63,6 +64,10 @@ export default new Router({
           component: InfoEditor
         }
       ]
+    },
+    {
+      path: '/dynamics/:dynamicsId',
+      component: DynamicsDetail
     },
     {
       path: '/login',

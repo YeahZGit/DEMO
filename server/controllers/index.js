@@ -65,6 +65,7 @@ router.route('/dynamics/recommend')
 
 router.route('/dynamics/:dynamicsId')
   .put(dynamicsController.updateDynamicsById)
+  .get(dynamicsController.getDynamicsById)
   .delete(dynamicsController.removeDynamicsById)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 

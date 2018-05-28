@@ -26,5 +26,7 @@ export default {
   border-bottom: 1px solid rgba(51, 51, 51, 0.08);
   padding-left: 1.5rem;
   color: #dcdde1;
+  background-color: white;
+  opacity: 0.99;
 }
 </style>

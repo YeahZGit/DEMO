@@ -4,22 +4,24 @@
       <header class="header">
         <aside class="user-img"><img :src="headerUrl"></aside>
         <aside class="user-info">
-          <span class="user-name">{{ item.author.username }}</span>
+          <span class="user-name">{{ item.author && item.author.username }}</span>
           <span class="create-time">{{ item.create_at }}</span>
         </aside>
         <!-- <b class="share-btn">...</b> -->
       </header>
       <section class="content">
-        <section class="content-wrapper">
-          <div class="text">{{ item.content }}</div>
-          <div class="imgs">
-            <section
-              :key="img"
-              v-for="img in item.imgs">
-              <img :src="img">
-            </section>
-          </div>
-        </section>
+        <router-link :to="'/dynamics/' + item._id">
+          <section class="content-wrapper">
+            <div class="text">{{ item.content }}</div>
+            <div class="imgs">
+              <section
+                :key="img"
+                v-for="img in item.imgs">
+                <img :src="img">
+              </section>
+            </div>
+          </section>
+        </router-link>
       </section>
       <footer class="interaction">
         <section>
@@ -54,7 +56,9 @@ export default {
   },
   computed: {
     headerUrl () {
-      return configs.API_BASE + this.item.author.picture_url
+      if (this.item.author) {
+        return configs.API_BASE + this.item.author.picture_url
+      }
     }
   }
 }

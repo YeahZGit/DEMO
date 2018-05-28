@@ -44,6 +44,9 @@ const actions = {
         commit('GET_RECOMMEND_DYNAMICS', res.data)
       }
     })
+  },
+  GET_DYNAMICS_BY_ID: ({ commit, state }, { dynamicsId }) => {
+    return dynamicsResource.getDynamicsById(dynamicsId)
   }
 }
 

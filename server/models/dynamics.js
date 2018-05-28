@@ -24,7 +24,7 @@ dynamicsSchema.statics = {
     return this.findByIdAndRemove(dynamicsId);
   },
   findDynamicsById (dynamicsId) {
-    return this.findById(dynamicsId);
+    return this.findById(dynamicsId).populate('author');
   },
   updateDynamicsById (dynamicsId, newDynamics) {
     return this.findByIdAndUpdate(dynamicsId, newDynamics);

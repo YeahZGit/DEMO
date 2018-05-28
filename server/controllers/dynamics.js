@@ -1,8 +1,16 @@
 const HttpError = require('some-http-error');
 const Dynamics = require('../models').Dynamics;
 const User = require('../models').User;
+const Comment = require('../models').Comment;
 
 const dynamicsController = {};
+
+dynamicsController.getDynamicsById = (req, res, next) => {
+  const dynamicsId = req.params.dynamicsId;
+  Dynamics.findDynamicsById(dynamicsId).then(dynamics => {
+    res.success(dynamics);
+  }).catch(next);
+}
 
 dynamicsController.addDynamics = (req, res, next) => {
   const body = Object.assign(new Dynamics(), req.body);
