@@ -1,5 +1,6 @@
 <template>
-  <div class="quill"></div>
+  <div class="quill">
+  </div>
 </template>
 
 <script>
@@ -10,31 +11,25 @@ export default {
   methods: {
     createEditor () {
       var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-
-        ['clean']                                         // remove formatting button
+        ['bold', 'italic', 'underline', 'strike']
       ];
       const options = {
-        placeholder: '文章内容',
+        // debug: 'info',
         modules: {
-          toolbar: toolbarOptions
-        }
+          toolbar: [
+            [{ 'size': ['small', false, 'large'] }],
+            ['bold', 'italic'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link', 'image']
+          ],
+        },
+        placeholder: '请输入文章内容...',
+        theme: 'snow'
       }
       const editor = new Quill('.quill', options)
+      editor.on('editor-change', () => {
+        this.$emit('contentChange', editor.container.firstChild.innerHTML)
+      });
     }
   },
   mounted () {
@@ -43,5 +38,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import url('../../assets/style/quill.snow.css');
+.ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.08) !important;
+}
+.ql-container {
+  border: none !important;
+}
+.ql-editor {
+  height: 50vh;
+  border: none !important;
+  color: #333;
+}
 </style>

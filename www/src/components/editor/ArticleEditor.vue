@@ -14,7 +14,7 @@
         <input type="text" placeholder="请输入文章标题">
       </section>
       <section class="dynamics-content">
-        <quill></quill>
+        <quill @contentChange="contentChangeHandler"></quill>
       </section>
     </div>
   </div>
@@ -55,6 +55,9 @@ export default {
     },
     uploadImgHandler () {
     },
+    contentChangeHandler (content) {
+
+    },
     releaseHandler () {
       this.addDynamics(this.dynamics).then(res => {
         if (res.status === 200) {
@@ -81,7 +84,7 @@ export default {
         position: absolute;
         width: 100%;
         height: 100%;
-        // opacity: 0;
+        opacity: 0;
       }
       .prompt {
         height: 9rem;
@@ -105,6 +108,9 @@ export default {
         font-size: 1.2rem;
         border-bottom: 1px solid rgba(51, 51, 51, 0.08);
       }
+    }
+    .dynamics-content {
+      margin-top: 0.5rem;
     }
   }
 }
