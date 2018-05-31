@@ -52,7 +52,7 @@ export default {
       addDynamics: 'ADD_DYNAMICS'
     }),
     cancelHandler () {
-      this.$emit('hide')
+      this.$emit('hide', 1)
     },
     uploadImgHandler (e) {
       let vm = this

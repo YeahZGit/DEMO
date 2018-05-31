@@ -24,30 +24,40 @@
       </section> -->
     </section>
     <text-editor :visible="showTextEditor" @hide="hideHandler"></text-editor>
+    <article-editor :visible="showArticleEditor" @hide="hideHandler"></article-editor>
   </div>
 </template>
 
 <script>
 import TextEditor from '../../components/editor/TextEditor.vue'
+import ArticleEditor from '../../components/editor/ArticleEditor.vue'
 
 export default {
   name: 'Editor',
   components: {
-    TextEditor
+    TextEditor,
+    ArticleEditor
   },
   data () {
     return {
-      showTextEditor: false
+      showTextEditor: false,
+      showArticleEditor: true
     }
   },
   methods: {
     startEdit (type) {
       if (type === 1) {
         this.showTextEditor = true
+      } else if (type === 2) {
+        this.showArticleEditor = true
       }
     },
-    hideHandler () {
-      this.showTextEditor = false
+    hideHandler (type) {
+      if (type === 1) {
+        this.showTextEditor = false
+      } else if (type === 2) {
+        this.showArticleEditor = false
+      }
     }
   }
 }
