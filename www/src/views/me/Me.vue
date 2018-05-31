@@ -10,6 +10,11 @@
           <section class="introduction">简介：{{ user.introduction || '暂无简介'}}</section>
         </div>
       </aside>
+      <aside class="info-edit">
+        <router-link to="info-editor">
+          <i class="icon ion-ios-arrow-forward"></i>
+        </router-link>
+      </aside>
     </header>
     <section class="switch-content">
       <switch-bar></switch-bar>
@@ -74,6 +79,16 @@ export default {
     align-items: center;
     .introduction {
       margin-top: 0.5rem;
+    }
+  }
+  .info-edit {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ion-ios-arrow-forward {
+      font-size: 1.8rem;
+      color: #dcdde1;
     }
   }
 }

@@ -10,18 +10,15 @@ export default {
   name: 'Quill',
   methods: {
     createEditor () {
-      var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike']
-      ];
       const options = {
         // debug: 'info',
         modules: {
           toolbar: [
-            [{ 'size': ['small', false, 'large'] }],
+            [{'size': ['small', false, 'large']}],
             ['bold', 'italic'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{'list': 'ordered'}, {'list': 'bullet'}],
             ['link', 'image']
-          ],
+          ]
         },
         placeholder: '请输入文章内容...',
         theme: 'snow'
@@ -29,7 +26,7 @@ export default {
       const editor = new Quill('.quill', options)
       editor.on('editor-change', () => {
         this.$emit('contentChange', editor.container.firstChild.innerHTML)
-      });
+      })
     }
   },
   mounted () {

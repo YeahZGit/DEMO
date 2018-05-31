@@ -2,7 +2,7 @@
   <div class="dynamics-detail">
     <back-header></back-header>
     <div>
-      <dynamics-item :item="dynamics"></dynamics-item>
+      <dynamics-item :item="dynamics" v-if="dynamics.type === 1"></dynamics-item>
     </div>
     <comment></comment>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="recomment grid-item">
+  <div class="recomment">
     <section
       class="recomment-item"
       v-for="item in dynamics"
@@ -11,7 +11,7 @@
         <div>{{ item.title }}</div>
       </section>
       <section class="info">
-        <aside class="header"><img :src="item.author.picture_url"></aside>
+        <aside class="header"><img :src="item.author && item.author.picture_url"></aside>
         <aside class="approve">
           <img src="../../assets/img/approve.svg">
           <span>{{ item.approve_count }}</span>
@@ -22,7 +22,11 @@
 </template>
 
 <script>
+import $ from 'jquery'
+// import Masonry from 'masonry-layout'
+// import imagesLoaded from 'imagesloaded'
 import { mapState, mapActions } from 'vuex'
+import configs from '../../constants/configs.js'
 
 export default {
   name: 'RecommendList',
@@ -43,21 +47,42 @@ export default {
   },
   created () {
     this.getRecommendDynamics().then(() => {
-      this.dynamics = this.recommendDynamics
+      let recDynamics = this.recommendDynamics
+      for (let i = 0; i < recDynamics.length; i++) {
+        recDynamics[i].title_img = configs.API_BASE + recDynamics[i].title_img
+        if (recDynamics[i].author) {
+          recDynamics[i].author.picture_url = configs.API_BASE + recDynamics[i].author.picture_url
+        }
+      }
+      this.dynamics = recDynamics
     })
+  },
+  mounted () {
+    var $grid = $(this.$el.querySelector('.recomment')).masonry({
+      itemSelector: '.recomment-item',
+      columnWidth: '.recomment-item',
+      percentPosition: true
+    })
+    $grid.imagesLoaded().progress(function () {
+      $grid.masonry('layout')
+    })
+    // const layout = new Masonry('.recomment', {
+    //   itemSelector: '.recomment-item',
+    //   columnWidth: '.recomment-item',
+    //   percentPosition: true
+    // })
+    console.log(Masonry)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .recomment {
-  float: right;
   .recomment-item {
     width: 45%;
     background-color: white;
     border-radius: 0.7rem;
     overflow: hidden;
-    float: left;
     margin-top: 0.8rem;
     margin: 0.5rem 0.55rem;
     .header-img {

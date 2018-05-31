@@ -9,7 +9,7 @@
         </aside>
         <!-- <b class="share-btn">...</b> -->
       </header>
-      <section class="content">
+      <section class="content" v-if="type === 1">
         <router-link :to="'/dynamics/' + item._id">
           <section class="content-wrapper">
             <div class="text">{{ item.content }}</div>
@@ -19,6 +19,18 @@
                 v-for="img in item.imgs">
                 <img :src="img">
               </section>
+            </div>
+          </section>
+        </router-link>
+      </section>
+      <section class="content" v-if="type === 2">
+        <router-link :to="'/dynamics/' + item._id">
+          <section class="content-wrapper">
+            <span class="user-name">
+              发布了文章《{{item.title}}》
+            </span>
+            <div class="title-img-wrapper">
+              <img :src="titleImg">
             </div>
           </section>
         </router-link>
@@ -59,6 +71,9 @@ export default {
       if (this.item.author) {
         return configs.API_BASE + this.item.author.picture_url
       }
+    },
+    titleImg () {
+      return configs.API_BASE + this.item.title_img
     }
   }
 }
@@ -108,6 +123,12 @@ export default {
       .content-wrapper {
         .text {
           margin-bottom: 0.5rem;
+        }
+        .title-img-wrapper {
+          margin-top: 1rem;
+          img {
+            width: 100%;
+          }
         }
         .imgs {
           display: flex;

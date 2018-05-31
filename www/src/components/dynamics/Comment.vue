@@ -1,6 +1,8 @@
 <template>
   <div class="comment">
     <div class="comment-list">
+      <header class="comment-header">评论区：</header>
+      <div v-if="!comments.length" class="prompt">暂无评论内容</div>
       <section
         class="comment-item"
         v-for="comment in comments"
@@ -76,6 +78,14 @@ export default {
 <style lang="scss" scoped>
 .comment {
   .comment-list {
+    .comment-header {
+      padding: 0.5rem 1rem;
+    }
+    .prompt {
+      text-align: center;
+      margin-top: 2rem;
+      color: #dcdde1;
+    }
     .comment-item {
       margin-top: 1rem;
       .comment-info {

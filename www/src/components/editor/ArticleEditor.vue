@@ -8,10 +8,11 @@
     <div class="editor-wrapper">
       <section class="dynamics-header">
         <input type="file" accept="image/*" @change="uploadImgHandler">
+        <img v-show="titleImg" :src="titleImg">
         <div class="prompt">点击添加图片</div>
       </section>
       <section class="dynamics-title">
-        <input type="text" placeholder="请输入文章标题">
+        <input type="text" placeholder="请输入文章标题" v-model="dynamics.title">
       </section>
       <section class="dynamics-content">
         <quill @contentChange="contentChangeHandler"></quill>
@@ -37,9 +38,11 @@ export default {
   },
   data () {
     return {
+      titleImg: null,
       dynamics: {
         type: 2,
-        content: null
+        content: null,
+        author: JSON.parse(localStorage.getItem('userInfo'))._id
       }
     }
   },
@@ -53,10 +56,20 @@ export default {
     cancelHandler () {
       this.$emit('hide', 2)
     },
-    uploadImgHandler () {
+    uploadImgHandler (e) {
+      let vm = this
+      let file = e.target.files[0] || e.dataTransfer.files
+      let data = new FormData()
+      data.append('picture', file)
+      vm.uploadImg(data).then(res => {
+        if (res.status === 200 && res.data.url) {
+          this.dynamics.title_img = res.data.url
+          this.titleImg = configs.API_BASE + res.data.url
+        }
+      })
     },
     contentChangeHandler (content) {
-
+      this.dynamics.content = content
     },
     releaseHandler () {
       this.addDynamics(this.dynamics).then(res => {
@@ -80,15 +93,22 @@ export default {
   .editor-wrapper {
     .dynamics-header {
       position: relative;
+      height: 9rem;
+      width: 100%;
       input {
         position: absolute;
         width: 100%;
         height: 100%;
         opacity: 0;
+        z-index: 100;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
       }
       .prompt {
-        height: 9rem;
-        width: 100%;
+        height: 100%;
         background-color: #f5f6fa;
         display: flex;
         align-items: center;
