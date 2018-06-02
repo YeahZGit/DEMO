@@ -97,6 +97,7 @@ export default {
   }
   .recommend-list {
     background-color: #f5f6fa;
+    padding-bottom: 3.5rem;
   }
 }
 </style>

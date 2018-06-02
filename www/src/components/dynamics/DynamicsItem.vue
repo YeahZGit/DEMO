@@ -87,6 +87,7 @@ export default {
   background-color: white;
   .item {
     padding: 0.5rem 1.5rem;
+    width: 100%;
     .header {
       display: flex;
       .user-img {
@@ -126,6 +127,9 @@ export default {
         }
         .title-img-wrapper {
           margin-top: 1rem;
+          width: 100%;
+          max-height: 12rem;
+          overflow: hidden;
           img {
             width: 100%;
           }
