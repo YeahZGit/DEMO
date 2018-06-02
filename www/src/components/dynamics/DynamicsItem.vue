@@ -2,7 +2,10 @@
   <div class="dynamics-item">
     <div class="item">
       <header class="header">
-        <aside class="user-img"><img :src="headerUrl"></aside>
+        <aside class="user-img">
+          <img v-if="!item.author.picture_url" src="../../assets/img/maomi.jpg">
+          <img v-else :src="item.author.picture_url">
+        </aside>
         <aside class="user-info">
           <span class="user-name">{{ item.author && item.author.username }}</span>
           <span class="create-time">{{ item.create_at }}</span>
@@ -30,7 +33,7 @@
               发布了文章《{{item.title}}》
             </span>
             <div class="title-img-wrapper">
-              <img :src="titleImg">
+              <img :src="item.title_img">
             </div>
           </section>
         </router-link>
@@ -50,8 +53,6 @@
 </template>
 
 <script>
-import configs from '../../constants/configs.js'
-
 export default {
   name: 'DynamicsItem',
   props: {
@@ -64,16 +65,6 @@ export default {
     type: {
       type: Number,
       default: 1
-    }
-  },
-  computed: {
-    headerUrl () {
-      if (this.item.author) {
-        return configs.API_BASE + this.item.author.picture_url
-      }
-    },
-    titleImg () {
-      return configs.API_BASE + this.item.title_img
     }
   }
 }

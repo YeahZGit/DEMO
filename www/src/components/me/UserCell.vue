@@ -2,7 +2,8 @@
   <div class="user-cell">
     <section class="item">
       <section class="img-wrapper">
-        <img :src="headerUrl">
+        <img v-if="!user.picture_url" src="../../assets/img/maomi.jpg">
+        <img v-else :src="user.picture_url">
       </section>
       <div class="right">
         <section class="info-wrapper">

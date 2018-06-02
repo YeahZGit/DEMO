@@ -91,6 +91,9 @@ router.route('/comments/:dynamicsId')
   .get(commentController.getCommentsByDynamicsId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
+router.route('/approve')
+  .post(app)
+
 router.route('/uploads/pictures')
   .post(multer({ storage: multer.diskStorage(uploadController.storagePicture) }).single('picture'),
     uploadController.handleResult)

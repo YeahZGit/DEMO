@@ -2,7 +2,8 @@
   <div class="me">
     <header class="me-header">
       <aside class="img-wrapper">
-        <img :src="headerUrl">
+        <img v-if="!user.picture_url" src="../../assets/img/maomi.jpg">
+        <img v-else :src="user.picture_url">
       </aside>
       <aside class="me-info">
         <div>
@@ -26,7 +27,6 @@
 <script>
 import SwitchBar from '../../components/me/SwitchBar.vue'
 import { mapState } from 'vuex'
-import configs from '../../constants/configs.js'
 
 export default {
   name: 'Me',
@@ -36,10 +36,7 @@ export default {
   computed: {
     ...mapState('user', {
       user: state => state.userInfo
-    }),
-    headerUrl () {
-      return configs.API_BASE + this.user.picture_url
-    }
+    })
   }
 }
 </script>

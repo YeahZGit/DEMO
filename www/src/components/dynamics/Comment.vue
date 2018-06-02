@@ -9,7 +9,7 @@
         :key="comment._id">
         <section class="comment-info">
           <aside class="img-wrapper">
-            <img :src="apiBase + comment.commentator.picture_url">
+            <img :src="comment.commentator.picture_url">
           </aside>
           <aside class="username">{{ comment.commentator.username }}</aside>
         </section>
@@ -31,14 +31,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import configs from '../../constants/configs.js'
 
 export default {
   name: 'Comment',
   data () {
     return {
       comments: [],
-      apiBase: configs.API_BASE,
       content: null
     }
   },
@@ -123,6 +121,7 @@ export default {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: white;
     .comment-input {
       flex: 1;
       input {
@@ -137,7 +136,7 @@ export default {
     }
     .release-btn {
       text-align: center;
-      padding-right: 1rem;
+      width: 3rem;
     }
   }
 }

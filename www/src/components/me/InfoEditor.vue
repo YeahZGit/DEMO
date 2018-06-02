@@ -9,8 +9,8 @@
     <div class="editor">
       <aside class="img-wrapper">
         <input type="file" accept="image/*" @change="uploadImgHandler">
-        <img v-if="!headerUrl" src="../../assets/img/maomi.jpg">
-        <img v-else :src="headerUrl">
+        <img v-if="!user.picture_url" src="../../assets/img/maomi.jpg">
+        <img v-else :src="user.picture_url">
         <div>点击上传</div>
       </aside>
       <aside class="input-wrapper">
@@ -65,8 +65,7 @@ export default {
       data.append('picture', file)
       vm.uploadImg(data).then(res => {
         if (res.status === 200 && res.data.url) {
-          vm.user.picture_url = res.data.url
-          vm.headerUrl = configs.API_BASE + res.data.url
+          vm.user.picture_url = configs.API_BASE + res.data.url
         }
       })
     }

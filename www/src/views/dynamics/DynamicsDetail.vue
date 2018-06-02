@@ -3,6 +3,7 @@
     <back-header></back-header>
     <div>
       <dynamics-item :item="dynamics" v-if="dynamics.type === 1"></dynamics-item>
+      <article-item :item="dynamics" v-else></article-item>
     </div>
     <comment></comment>
   </div>
@@ -11,6 +12,7 @@
 <script>
 import BackHeader from '../../components/common/BackHeader.vue'
 import DynamicsItem from '../../components/dynamics/DynamicsItem.vue'
+import ArticleItem from '../../components/dynamics/ArticleItem.vue'
 import Comment from '../../components/dynamics/Comment.vue'
 import { mapActions } from 'vuex'
 
@@ -24,6 +26,7 @@ export default {
   components: {
     BackHeader,
     DynamicsItem,
+    ArticleItem,
     Comment
   },
   methods: {
@@ -45,6 +48,7 @@ export default {
 .dynamics-detail {
   min-height: 100vh;
   background-color: white;
-  padding-top: 3rem;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
 }
 </style>

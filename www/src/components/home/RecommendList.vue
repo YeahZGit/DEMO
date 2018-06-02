@@ -1,5 +1,8 @@
 <template>
-  <div class="recomment" v-masonry item-selector=".recomment-item">
+  <div class="recomment"
+    v-masonry
+    transition-duration="0.3s"
+    item-selector=".recomment-item">
     <section
       v-masonry-tile
       class="recomment-item"
@@ -26,7 +29,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import configs from '../../constants/configs.js'
 
 export default {
   name: 'RecommendList',
@@ -47,14 +49,7 @@ export default {
   },
   created () {
     this.getRecommendDynamics().then(() => {
-      let recDynamics = this.recommendDynamics
-      for (let i = 0; i < recDynamics.length; i++) {
-        recDynamics[i].title_img = configs.API_BASE + recDynamics[i].title_img
-        if (recDynamics[i].author) {
-          recDynamics[i].author.picture_url = configs.API_BASE + recDynamics[i].author.picture_url
-        }
-      }
-      this.dynamics = recDynamics
+      this.dynamics = this.recommendDynamics
     })
   }
 }

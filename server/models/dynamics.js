@@ -13,7 +13,8 @@ const dynamicsSchema = new Schema({
   create_at: { type: Date, default: Date.now },
   update_at: { type: Date, default: Date.now },
   comment_count: { type: Number, default: 0 },
-  approve_count: { type: Number, default: 0 }
+  approve_count: { type: Number, default: 0 },
+  has_approve: { type: Boolean, default: false }
 })
 
 dynamicsSchema.statics = {

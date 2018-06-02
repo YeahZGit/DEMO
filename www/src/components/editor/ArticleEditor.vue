@@ -8,7 +8,7 @@
     <div class="editor-wrapper">
       <section class="dynamics-header">
         <input type="file" accept="image/*" @change="uploadImgHandler">
-        <img v-show="titleImg" :src="titleImg">
+        <img v-show="dynamics.title_img" :src="dynamics.title_img">
         <div class="prompt">点击添加图片</div>
       </section>
       <section class="dynamics-title">
@@ -38,10 +38,10 @@ export default {
   },
   data () {
     return {
-      titleImg: null,
       dynamics: {
         type: 2,
         content: null,
+        title_img: null,
         author: JSON.parse(localStorage.getItem('userInfo'))._id
       }
     }
@@ -63,8 +63,7 @@ export default {
       data.append('picture', file)
       vm.uploadImg(data).then(res => {
         if (res.status === 200 && res.data.url) {
-          this.dynamics.title_img = res.data.url
-          this.titleImg = configs.API_BASE + res.data.url
+          this.dynamics.title_img = configs.API_BASE + res.data.url
         }
       })
     },
