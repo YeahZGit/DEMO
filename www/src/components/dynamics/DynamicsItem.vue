@@ -40,7 +40,8 @@
       </section>
       <footer class="interaction">
         <section>
-          <img src="../../assets/img/approve.svg">
+          <img src="../../assets/img/approve.svg" @click="approveHandler" v-if="!item.has_approve">
+          <img src="../../assets/img/approve.svg" v-else>
           <span class="count">{{ item.approve_count }}</span>
         </section>
         <section>
@@ -53,6 +54,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'DynamicsItem',
   props: {
@@ -65,6 +68,26 @@ export default {
     type: {
       type: Number,
       default: 1
+    }
+  },
+  computed: {
+    ...mapState('user', {
+      userInfo: state => state.userInfo
+    })
+  },
+  methods: {
+    ...mapActions('approve', {
+      addApprove: 'ADD_APPROVE'
+    }),
+    approveHandler () {
+      let approve = {
+        dynamics: this.item._id,
+        user: this.userInfo._id
+      };
+      this.addApprove(approve).then(() => {
+        this.item.approve_count = this.item.approve_count + 1
+        this.item.has_approve = true
+      })
     }
   }
 }

@@ -10,6 +10,8 @@ const userController = require('./user');
 const uploadController = require('./upload');
 const searchController = require('./search');
 const commentController = require('./comment');
+const approveController = require('./approve');
+const messageController = require('./message');
 
 router.route('/theme')
   .post(themeController.addTheme)
@@ -92,8 +94,13 @@ router.route('/comments/:dynamicsId')
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/approve')
-  .post(app)
+  .post(approveController.addApprove)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
 
+router.route('/messages/:userId')
+  .get(messageController.getMessageByUserId)
+  .all(() => { throw new HttpError.MethodNotAllowedError() });
+  
 router.route('/uploads/pictures')
   .post(multer({ storage: multer.diskStorage(uploadController.storagePicture) }).single('picture'),
     uploadController.handleResult)

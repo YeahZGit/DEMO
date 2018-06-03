@@ -6,6 +6,8 @@ import dynamics from './dynamics'
 import theme from './theme'
 import search from './search'
 import comment from './comment'
+import approve from './approve'
+import message from './message'
 
 Vue.use(Vuex)
 
@@ -16,7 +18,9 @@ const store = new Vuex.Store({
     dynamics,
     theme,
     search,
-    comment
+    comment,
+    approve,
+    message
   }
 })
 

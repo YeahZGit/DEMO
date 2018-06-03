@@ -6,10 +6,11 @@ const ObjectId = Schema.Types.ObjectId;
 const messageSchema = new Schema({
   dyanmics: { type: ObjectId, ref: 'Dynamics' },
   user: { type: ObjectId, ref: 'User' },
+  create_at: { type: Date, default: Date.now },
   message_type: { type: Number, default: 1 }
 })
 
-commentSchema.statics = {
+messageSchema.statics = {
   addMessage (message) {
     return approve.save();
   },
@@ -18,4 +19,4 @@ commentSchema.statics = {
   }
 }
 
-module.exports = approveSchema;
+module.exports = messageSchema;

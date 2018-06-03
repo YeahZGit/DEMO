@@ -1,7 +1,7 @@
 <template>
   <div class="recomment"
     v-masonry
-    transition-duration="0.3s"
+    transition-duration="0.5s"
     item-selector=".recomment-item">
     <section
       v-masonry-tile

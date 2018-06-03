@@ -42,6 +42,14 @@ dynamicsSchema.statics = {
   fuzzyQuerByTitleAndContent (query) {
     let reg = new RegExp(query, 'i');
     return this.find({ $or: [{ title: reg }, { content: reg }]}).populate('author');
+  },
+  addApproveCommentCount (type, dynamicsId) {
+    console.log(type, dynamicsId);
+    if (type === 1) {
+      return this.findByIdAndUpdate(dynamicsId, { $inc: {comment_count: 1} });
+    } else if (type === 2) {
+      return this.findByIdAndUpdate(dynamicsId, { $inc: {approve_count: 1} })
+    }
   }
 }
 

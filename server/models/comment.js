@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const commentSchema = new Schema({
   commentator: { type: ObjectId, ref: 'User' },
-  dynamics: ObjectId,
+  dynamics: { type: ObjectId, ref: 'Dynamics' },
   content: String
 })
 

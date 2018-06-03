@@ -8,10 +8,10 @@ const approveSchema = new Schema({
   user: { type: ObjectId, ref: 'User' }
 })
 
-commentSchema.statics = {
- addApprove (approve) {
-  return approve.save();
- }
+approveSchema.statics = {
+  addApprove (approve) {
+    return approve.save();
+  }
 }
 
 module.exports = approveSchema;

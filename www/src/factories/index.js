@@ -4,6 +4,8 @@ import dynamicsResource from './dynamics'
 import themeResource from './theme'
 import searchResource from './search'
 import commentResource from './comment'
+import approveResource from './approve'
+import messageResource from './message'
 
 export default {
   userResource,
@@ -11,5 +13,7 @@ export default {
   dynamicsResource,
   themeResource,
   searchResource,
-  commentResource
+  commentResource,
+  approveResource,
+  messageResource
 }
