@@ -1,6 +1,7 @@
 const HttpError = require('some-http-error');
 const Approve = require('../models').Approve;
 const Dynamics = require('../models').Dynamics;
+const Message = require('../models').Message;
 
 const approveController = {};
 

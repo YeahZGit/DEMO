@@ -24,6 +24,7 @@
 <script>
 import BackHeader from '../components/common/BackHeader.vue'
 import { mapActions } from 'vuex'
+import { Toast } from 'mint-ui'
 
 export default {
   name: 'Register',
@@ -44,7 +45,12 @@ export default {
       register: 'REGISTER'
     }),
     submit () {
-      this.register(this.user)
+      this.register(this.user).then(res => {
+        Toast('注册成功，返回登录页面')
+        setTimeout(() => {
+          location.href = '/login'
+        }, 1500)
+      })
     }
   }
 }

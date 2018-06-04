@@ -14,7 +14,7 @@ messageSchema.statics = {
   addMessage (message) {
     return approve.save();
   },
-  getMessageByUserId (userId) {
+  getMessagesByUserId (userId) {
     return this.find({ user: userId }).populate('dynamics').populate('user');
   }
 }

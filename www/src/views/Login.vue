@@ -26,6 +26,7 @@
 <script>
 import BackHeader from '../components/common/BackHeader.vue'
 import { mapActions } from 'vuex'
+import { Toast } from 'mint-ui'
 
 export default {
   name: 'Login',
@@ -45,7 +46,12 @@ export default {
       authorize: 'AUTHORIZE'
     }),
     submit () {
-      this.authorize(this.user)
+      this.authorize(this.user).then(res => {
+        Toast('登录成功！')
+        setTimeout(() => {
+          location.href = '/home'
+        }, 1500)
+      })
     }
   }
 }

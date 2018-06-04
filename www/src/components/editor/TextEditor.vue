@@ -25,6 +25,7 @@
 import EditorHeader from './EditorHeader'
 import { mapActions } from 'vuex'
 import configs from '../../constants/configs'
+import { Toast } from 'mint-ui'
 
 export default {
   name: 'TextEditor',
@@ -67,9 +68,10 @@ export default {
     },
     releaseHandler () {
       this.addDynamics(this.dynamics).then(res => {
-        if (res.status === 200) {
-          console.log('发布成功')
-        }
+        Toast('发布成功')
+        setTimeout(() => {
+          location.href = '/dynamics'
+        }, 1500)
       })
     }
   }

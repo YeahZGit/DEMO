@@ -30,14 +30,15 @@ const mutations = {
 
 const actions = {
   REGISTER: ({ commit, state }, user) => {
-    return userResource.register(user).then(() => {
-      location.href = '/login'
+    return userResource.register(user).then((res) => {
+      return res
     })
   },
   AUTHORIZE: ({ commit, state }, user) => {
     return userResource.authorize(user).then(res => {
       if (res.status === 200 && res.data) {
         commit('AUTHORIZE', res.data)
+        return res
       }
     })
   },
@@ -45,6 +46,7 @@ const actions = {
     return userResource.updateUserById(user._id, user).then(res => {
       if (res.status === 200 && res.data) {
         commit('UPDATE_USER_BY_ID', res.data)
+        return res
       }
     })
   },

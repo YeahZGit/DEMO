@@ -98,9 +98,9 @@ router.route('/approve')
   .all(() => { throw new HttpError.MethodNotAllowedError() });
 
 router.route('/messages/:userId')
-  .get(messageController.getMessageByUserId)
+  .get(messageController.getMessagesByUserId)
   .all(() => { throw new HttpError.MethodNotAllowedError() });
-  
+
 router.route('/uploads/pictures')
   .post(multer({ storage: multer.diskStorage(uploadController.storagePicture) }).single('picture'),
     uploadController.handleResult)

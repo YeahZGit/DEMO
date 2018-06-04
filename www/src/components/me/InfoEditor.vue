@@ -29,6 +29,7 @@
 import EditorHeader from '../editor/EditorHeader.vue'
 import configs from '../../constants/configs.js'
 import { mapActions, mapState } from 'vuex'
+import { Toast } from 'mint-ui'
 
 export default {
   name: 'InfoEditor',
@@ -53,7 +54,15 @@ export default {
       updateUser: 'UPDATE_USER_BY_ID'
     }),
     completeHandler () {
-      this.updateUser(this.user)
+      this.updateUser(this.user).then(res => {
+        Toast({
+          message: '修改成功',
+          duration: 1000
+        })
+        setTimeout(() => {
+          history.go(-1)
+        }, 1500)
+      })
     },
     cancelHandler () {
       history.go(-1)

@@ -22,7 +22,11 @@ const mutations = {
 
 const actions = {
   ADD_DYNAMICS: ({ commit, state }, dynamics) => {
-    return dynamicsResource.addDynamics(dynamics)
+    return dynamicsResource.addDynamics(dynamics).then(res => {
+      if (res.status === 200 && res.data) {
+        return res
+      }
+    })
   },
   GET_SELF_DYNAMICS_BY_USER_ID: ({ commit, state }, { userId }) => {
     return dynamicsResource.getSelfDynamicsByUserId(userId).then(res => {

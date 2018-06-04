@@ -80,7 +80,11 @@ userController.authorize = (req, res, next) => {
     // } else {
     //   next(new HttpError.BadRequestError('Username or password error'));
     // }
-    res.success(user);
+    if (user) {
+      res.success(user);
+    } else {
+      next(new HttpError.BadRequestError('用户名或密码错误'));
+    }
   }).catch(next);
 };
 

@@ -18,12 +18,14 @@
           <img v-if="!message.user.picture_url" src="../../assets/img/maomi.jpg">
           <img v-else :src="message.user.picture_url">
         </aside>
-        <aside>
-          <section>{{ message.user.username }}</section>
-          <section v-if="message.type === 1">在你的动态中添加评论</section>
-          <section v-if="message.type === 2">赞了你的动态</section>
+        <aside class="right">
+          <aside>
+            <section>{{ message.user.username }}</section>
+            <section v-if="message.type === 1">在你的动态中添加评论</section>
+            <section v-if="message.type === 2">赞了你的动态</section>
+          </aside>
+          <aside class="date">{{ message.create_at }}</aside>
         </aside>
-        <aside class="date">{{ message.create_at }}</aside>
       </section>
     </div>
   </div>
@@ -54,7 +56,7 @@ export default {
     })
   },
   created () {
-    this.getMessagesByUserId(this.userInfo._id).then(messages => {
+    this.getMessagesByUserId({ userId: this.userInfo._id }).then(messages => {
 
     })
   }
@@ -70,7 +72,7 @@ export default {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e6e6e6;
-    padding-left: 1.2rem;
+    padding: 0 1.2rem;
     .comment {
       background-color: #22a6b3 !important;
     }
@@ -88,8 +90,13 @@ export default {
         width: 2.5rem;
       }
     }
-    .date {
-      position: relative;
+    .right {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      .date {
+        position: relative;
+      }
     }
     .message-icon {
       background-color: white;

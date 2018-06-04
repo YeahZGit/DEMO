@@ -1,5 +1,6 @@
 import axios from 'axios'
 import configs from '../constants/configs'
+import { Toast } from 'mint-ui'
 
 const instance = axios.create({
   baseURL: configs.API_BASE,
@@ -9,6 +10,7 @@ const instance = axios.create({
 instance.interceptors.response.use(response => {
   return response
 }, error => {
+  Toast(error.response.data.message)
   return Promise.reject(error)
 })
 

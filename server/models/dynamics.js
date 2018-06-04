@@ -44,7 +44,6 @@ dynamicsSchema.statics = {
     return this.find({ $or: [{ title: reg }, { content: reg }]}).populate('author');
   },
   addApproveCommentCount (type, dynamicsId) {
-    console.log(type, dynamicsId);
     if (type === 1) {
       return this.findByIdAndUpdate(dynamicsId, { $inc: {comment_count: 1} });
     } else if (type === 2) {

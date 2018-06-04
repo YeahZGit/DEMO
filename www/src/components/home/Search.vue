@@ -24,22 +24,25 @@
           <tag :tags="history" @useHistory="clickHistory"></tag>
         </div>
       </section>
-      <section class-="users" v-if="searchContent.users.length">
-        <header class="header">相关用户</header>
-        <user-cell
-          v-for="item in searchContent.users"
-          :key="item._id"
-          :user="item">
-        </user-cell>
-      </section>
-      <section class="dynamics" v-if="searchContent.dynamics.length">
-        <header class="header">相关动态</header>
-        <dynamics-item
-          v-for="item in searchContent.dynamics"
-          :key="item._id"
-          :item="item">
-        </dynamics-item>
-      </section>
+      <div class="search-list">
+        <section class-="users" v-if="searchContent.users.length">
+          <header class="header">相关用户</header>
+          <user-cell
+            v-for="item in searchContent.users"
+            :key="item._id"
+            :user="item">
+          </user-cell>
+        </section>
+        <section class="dynamics" v-if="searchContent.dynamics.length">
+          <header class="header">相关动态</header>
+          <dynamics-item
+            v-for="item in searchContent.dynamics"
+            :key="item._id"
+            :type="item.type"
+            :item="item">
+          </dynamics-item>
+        </section>
+      </div>
       <div class="prompt" v-show="showPrompt">未找到相关内容...</div>
     </div>
   </div>
@@ -152,8 +155,8 @@ export default {
   }
 }
 .focus {
-  min-height: 100vh;
-  position: absolute;
+  height: 100vh;
+  position: fixed;
   background: white;
   z-index: 100;
   line-height: 1.8rem;
@@ -173,8 +176,11 @@ export default {
     }
   }
   .search-content {
-    padding: 0.5rem 0;
     font-size: 0.8rem;
+    .search-list {
+      max-height: 100vh;
+      overflow-y: auto;
+    }
     & > section {
       margin-bottom: 1rem;
     }

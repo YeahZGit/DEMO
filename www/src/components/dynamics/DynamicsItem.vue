@@ -83,7 +83,7 @@ export default {
       let approve = {
         dynamics: this.item._id,
         user: this.userInfo._id
-      };
+      }
       this.addApprove(approve).then(() => {
         this.item.approve_count = this.item.approve_count + 1
         this.item.has_approve = true
