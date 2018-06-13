@@ -13,10 +13,10 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import InfoEditor from '../components/me/InfoEditor.vue'
 import DynamicsDetail from '../views/dynamics/DynamicsDetail'
-
+import Unauthorized from '../views/unauthorized/Unauthorized.vue'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -24,6 +24,10 @@ export default new Router({
       component: Main,
       redirect: 'home',
       children: [
+        {
+          path: 'unauthorized',
+          component: Unauthorized
+        },
         {
           path: 'home',
           component: Home
@@ -79,3 +83,14 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let path = to.path
+  let userInfo = sessionStorage.getItem('userInfo')
+  if (!userInfo && path !== '/unauthorized' && path !== '/login' && path !== '/register' && path !== '/home') {
+    return next({ path: '/unauthorized' })
+  }
+  next()
+})
+
+export default router

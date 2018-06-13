@@ -39,7 +39,7 @@ export default {
     })
   },
   created () {
-    let userId = JSON.parse(localStorage.getItem('userInfo'))._id
+    let userId = JSON.parse(sessionStorage.getItem('userInfo'))._id
     this.getDynamics({ userId }).then(() => {
       this.dynamics = this.currentDynamics
     })

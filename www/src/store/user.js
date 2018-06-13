@@ -14,11 +14,11 @@ const mutations = {
   // },
   AUTHORIZE: (state, user) => {
     state.userInfo = user
-    localStorage.setItem('userInfo', JSON.stringify(user))
+    sessionStorage.setItem('userInfo', JSON.stringify(user))
   },
   UPDATE_USER_BY_ID: (state, user) => {
     state.userInfo = user
-    localStorage.setItem('userInfo', JSON.stringify(user))
+    sessionStorage.setItem('userInfo', JSON.stringify(user))
   },
   GET_ALL_FOLLOWS_BY_USER_ID: (state, follows) => {
     state.allFollows = follows

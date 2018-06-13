@@ -47,10 +47,14 @@ export default {
       removeFollow: 'REMOVE_FOLLOW'
     }),
     addFollowHandler (followId) {
-      this.addFollow({ userId: this.userInfo._id, followId: followId })
+      this.addFollow({ userId: this.userInfo._id, followId: followId }).then(() => {
+        this.user.is_follow = 1;
+      })
     },
     removeFollowHandler (followId) {
-      this.removeFollow({ userId: this.userInfo._id, followId: followId })
+      this.removeFollow({ userId: this.userInfo._id, followId: followId }).then(() => {
+        this.user.is_follow = 0;
+      })
     }
   }
 }

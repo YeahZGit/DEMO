@@ -2,16 +2,17 @@
   <div class="login">
     <back-header></back-header>
     <div class="login-wrapper">
+      <section class="logo"><img src="../assets/img/foodkey.png"></section>
       <header class="login-title">用户注册</header>
       <section>
         <div class="input-wrapper">
           <input type="text" placeholder="username" v-model="user.username">
         </div>
         <div class="input-wrapper">
-          <input type="text" placeholder="password" v-model="user.password">
+          <input type="password" placeholder="password" v-model="user.password">
         </div>
         <div class="input-wrapper">
-          <input type="text" placeholder="confirm password">
+          <input type="password" placeholder="confirm password">
         </div>
         <div>
           <div class="btn btn-danger" @click="submit">注册</div>
@@ -48,7 +49,7 @@ export default {
       this.register(this.user).then(res => {
         Toast('注册成功，返回登录页面')
         setTimeout(() => {
-          location.href = '/login'
+          this.$router.push('/login')
         }, 1500)
       })
     }
@@ -68,6 +69,15 @@ export default {
     width: 70vw;
     display: flex;
     flex-direction: column;
+    .logo {
+      width: 5rem;
+      height: 5rem;
+      margin: -6rem auto 1rem auto;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
     .login-title {
       text-align: center;
     }

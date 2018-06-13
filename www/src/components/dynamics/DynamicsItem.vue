@@ -8,7 +8,7 @@
         </aside>
         <aside class="user-info">
           <span class="user-name">{{ item.author && item.author.username }}</span>
-          <span class="create-time">{{ item.create_at }}</span>
+          <span class="create-time">{{ item.create_at | dateFilter }}</span>
         </aside>
         <!-- <b class="share-btn">...</b> -->
       </header>

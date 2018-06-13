@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   created () {
-    let userInfo = localStorage.getItem('userInfo')
+    let userInfo = sessionStorage.getItem('userInfo')
     if (userInfo) {
       userInfo = JSON.parse(userInfo)
       this.$store.state.user.userInfo = userInfo

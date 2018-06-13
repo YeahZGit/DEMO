@@ -1,7 +1,7 @@
 <template>
   <div class="article-editor" v-show="visible">
     <editor-header
-      title="文字"
+      title="文章"
       @cancel="cancelHandler"
       @release="releaseHandler">
     </editor-header>
@@ -43,7 +43,7 @@ export default {
         type: 2,
         content: null,
         title_img: null,
-        author: JSON.parse(localStorage.getItem('userInfo'))._id
+        author: JSON.parse(sessionStorage.getItem('userInfo'))._id
       }
     }
   },
@@ -75,7 +75,7 @@ export default {
       this.addDynamics(this.dynamics).then(res => {
         Toast('发布成功')
         setTimeout(() => {
-          location.href = '/dynamics'
+          this.$router.push('/dynamics')
         }, 1500)
       })
     }

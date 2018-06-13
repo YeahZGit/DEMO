@@ -2,6 +2,7 @@
   <div class="login">
     <back-header title="登录"></back-header>
     <div class="login-wrapper">
+      <section class="logo"><img src="../assets/img/foodkey.png"></section>
       <header class="login-title">
         用户登录
       </header>
@@ -10,7 +11,7 @@
           <input type="text" placeholder="username" v-model="user.username">
         </div>
         <div class="input-wrapper">
-          <input type="text" placeholder="password" v-model="user.password">
+          <input type="password" placeholder="password" v-model="user.password">
         </div>
         <div>
           <div class="btn btn-danger" @click="submit">登录</div>
@@ -49,7 +50,7 @@ export default {
       this.authorize(this.user).then(res => {
         Toast('登录成功！')
         setTimeout(() => {
-          location.href = '/home'
+          this.$router.push('/home')
         }, 1500)
       })
     }
@@ -69,6 +70,15 @@ export default {
     width: 70vw;
     display: flex;
     flex-direction: column;
+    .logo {
+      width: 5rem;
+      height: 5rem;
+      margin: -6rem auto 1rem auto;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
     .login-title {
       text-align: center;
     }

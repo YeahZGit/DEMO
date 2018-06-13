@@ -8,7 +8,9 @@
         <mt-swipe-item
           v-for="item in theme0"
           :key="item._id">
-          <img :src="item.page_url">
+          <router-link :to="item.page_url">
+            <img :src="item.img">
+          </router-link>
         </mt-swipe-item>
       </mt-swipe>
     </section>
@@ -16,9 +18,9 @@
       <section class="nav-item"
         v-for="item in theme1"
         :key="item._id">
-        <div class="nav-img">
-          <img :src="item.page_url">
-        </div>
+        <router-link class="nav-img" :to="item.page_url">
+          <img :src="item.img">
+        </router-link>
         <div class="nav-title">{{ item.title }}</div>
       </section>
     </section>
@@ -68,7 +70,7 @@ export default {
 .home {
   background-color: white;
   .swipe {
-    height: 10rem;
+    height: 13rem;
     img {
       height: 100%;
       width: 100%;
@@ -77,11 +79,16 @@ export default {
   .nav-wrapper {
     display: flex;
     justify-content: space-around;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     .nav-item {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.8rem;
       .nav-img {
-        width: 3rem;
-        height: 3rem;
+        width: 2.8rem;
+        height: 2.8rem;
         border-radius: 50%;
         overflow: hidden;
         img {
